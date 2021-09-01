@@ -1,6 +1,6 @@
+<!--top-menu-->
 <div id="fh5co-wrapper">
   <div id="fh5co-page">
-
     <header id="fh5co-header-section" class="sticky-banner">
       <div class="container">
         <div class="nav-header">
@@ -9,7 +9,7 @@
           <!-- START #fh5co-menu-wrap -->
           <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
-              <li><a href="index.html">Trang chủ</a></li>
+              <li><a routerLink="/home">Trang chủ</a></li>
               <li>
                 <a href="#" class="fh5co-sub-ddown">Có gì mới</a>
                 <ul class="fh5co-sub-menu">
@@ -18,9 +18,8 @@
                   <li><a href="#">Trải nghiệm tốt nhất</a></li>
                 </ul>
               </li>
-<!--              <li><a href="#">Về chúng tôi</a></li>-->
-              <li><a class="btn" data-toggle="modal" data-target="#SignInFormModal" (click)="open(SignInFormModal)"  *ngIf="userLogged===false">Trở thành chủ nhà</a></li>
-              <li><button class="btn btn-outline-success" mat-icon-button (click)="open(SignInFormModal)" *ngIf="userLogged===false"><mat-icon>login</mat-icon></button></li>
+              <li><a class="fh5co-link" (click)="open(SignInFormModal)"  *ngIf="userLogged===false">Trở thành chủ nhà</a></li>
+              <li><a class="fh5co-link" (click)="open(SignInFormModal)" *ngIf="userLogged===false">Đăng nhập</a></li>
               <li>
                 <div class="btn-group" *ngIf="userLogged===true">
                   <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true" mat-icon-button>
@@ -42,144 +41,107 @@
         </div>
       </div>
     </header>
-    <!-- end:header-top -->
   </div>
 </div>
 
 
-<ng-template #SignInFormModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Chào đằng ấy</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+<!--signIn-->
+<ng-template #SignInFormModal let-signIn>
   <div class="modal-body">
-    <form>
-      <div class="form-group mt-3">
-        <label class="control-label" for="username">Tên đăng nhập</label>
-        <div class="input-group">
-          <button disabled class="btn btn-primary input-group-addon" style="padding-top: 10px">
-            <mat-icon>keyvpn</mat-icon>
-          </button>
-          <input class="form-control input-field" id="username" name="username" type="text"/>
+    <!-- Sing in  Form -->
+<!--    <section class="sign-in">-->
+      <div class="container">
+        <div class="signin-content">
+          <div class="signin-image">
+            <figure><img src="assets/register/images/signin-image.jpg" alt="sing up image"></figure>
+            <a class="signup-image-link" (click)="signIn.dismiss();open(SignUpFormModal)">Tạo tài khoản mới</a>
+            <a class="signup-image-link mt-3">Quên mật khẩu</a>
+          </div>
+          <div class="signin-form">
+            <h2 class="form-title">Đăng nhập</h2>
+            <form method="POST" class="register-form" id="login-form">
+              <div class="form-group">
+                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                <input type="text" name="your_name" id="your_name" placeholder="Tài khoản"/>
+              </div>
+              <div class="form-group">
+                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                <input type="password" name="your_pass" id="your_pass" placeholder="Mật khẩu"/>
+              </div>
+<!--              <div class="form-group">-->
+<!--                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />-->
+<!--                <label for="remember-me" class="label-agree-term"><span><span></span></span>Ghi nhớ đăng nhập</label>-->
+<!--              </div>-->
+              <div class="form-group form-button">
+                <input type="submit" name="signin" id="signin" class="form-submit" value="Đăng nhập"/>
+              </div>
+            </form>
+            <div class="alert alert-warning mt-3" hidden>Tài khoản hoặc mật khẩu của bạn không đúng</div>
+
+
+            <div class="social-login">
+              <span class="social-label">Or login with</span>
+              <ul class="socials">
+                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="form-group mt-3">
-        <label class="control-label" for="password">Mật khẩu</label>
-        <div class="input-group">
-          <button disabled class="btn btn-primary input-group-addon" style="padding-top: 10px">
-            <mat-icon>password</mat-icon>
-          </button>
-          <input class="form-control input-field" id="password" name="password" type="text"/>
-        </div>
-      </div>
-        <div class="col-6 mt-3">
-          <button class="btn btn-primary mt-3">Đăng nhập</button>
-        </div>
-        <div class="col-4 p-3">
-          <!-- Simple link -->
-          <a class="link-info" href="#">Quên mật khẩu?</a>
-        </div>
-      <div class="text-center">
-        <p>hoặc đăng nhập với :</p>
-        <button type="button" class="btn btn-primary btn-floating mx-1" disabled>
-          <i class="fab fa-facebook-f"></i>
-        </button>
-
-        <button type="button" class="btn btn-primary btn-floating mx-1">
-          <i class="fab fa-google"></i>
-        </button>
-
-        <button type="button" class="btn btn-primary btn-floating mx-1" disabled >
-          <i class="fab fa-twitter"></i>
-        </button>
-
-        <button type="button" class="btn btn-primary btn-floating mx-1" disabled >
-          <i class="fab fa-github"></i>
-        </button>
-      </div>
-    </form>
-    <div class="row mt-3">
-      <span>Bạn chưa có tài khoản? <a class="link-success" (click)="modal.dismiss();open(SignUpFormModal)">Tham gia ngay với chúng tôi nhé
-        <button disabled mat-icon-button><mat-icon>insert_emoticon</mat-icon></button>
-      </a>
-      </span>
-    </div>
+<!--    </section>-->
 
   </div>
-<!--  <div class="modal-footer">-->
-<!--    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Hủy</button>-->
-<!--  </div>-->
 </ng-template>
-
+<!--register-->
 <ng-template #SignUpFormModal let-signUp>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title1">Đăng ký thành viên mới</h4>
-    <button type="button" class="btn btn-close" aria-label="Close" (click)="signUp.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <div>
+<!--    <div class="modal-header">-->
+<!--      <h3 class="modal-title">I'm a modal!</h3>-->
+<!--    </div>-->
+    <div class="modal-body">
+<!--      <section class="signup">-->
+        <div class="container">
+          <div class="signup-content">
+            <div class="signup-form">
+              <h2 class="form-title">Sign up</h2>
+              <form method="POST" class="register-form" id="register-form">
+                <div class="form-group">
+                  <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                  <input type="text" name="name" id="name" placeholder="Your Username"/>
+                </div>
+                <div class="form-group">
+                  <label for="phone"><i class="zmdi zmdi-email"></i></label>
+                  <input type="email" name="email" id="phone" placeholder="Your Phone Number"/>
+                </div>
+                <div class="form-group">
+                  <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                  <input type="password" name="pass" id="pass" placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                  <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                  <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                  <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                </div>
+                <div class="form-group form-button">
+                  <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                </div>
+              </form>
+            </div>
+            <div class="signup-image">
+              <figure><img src="assets/register/images/signup-image.jpg" alt="sing up image"></figure>
+              <a class="signup-image-link" (click)="signUp.dismiss();open(SignInFormModal)">I am already member</a>
+            </div>
+          </div>
+        </div>
+<!--      </section>-->
+    </div>
+<!--    <div class="modal-footer"></div>-->
   </div>
-  <div class="modal-body">
-    <form>
-<!--      username-->
-      <div class="form-group">
-        <label class="control-label" for="username1">Tên đăng nhập</label>
-        <div class="input-group">
-          <button disabled class="btn btn-primary input-group-addon" style="padding-top: 10px">
-            <mat-icon>keyvpn</mat-icon>
-          </button>
-          <input class="form-control input-field" id="username1" name="username" type="text" required="required"/>
-        </div>
-      </div>
-<!--      password-->
-      <div class="form-group">
-        <label class="control-label" for="password1">Mật khẩu</label>
-        <div class="input-group">
-          <button disabled class="btn btn-primary input-group-addon" style="padding-top: 10px">
-            <mat-icon>password</mat-icon>
-          </button>
-          <input class="form-control input-field" id="password1" name="password" type="text"/>
-        </div>
-      </div>
-<!--      re-password-->
-      <div class="form-group">
-        <label class="control-label" for="re-password">Nhập lại mật khẩu</label>
-        <div class="input-group">
-          <button disabled class="btn btn-primary input-group-addon" style="padding-top: 10px">
-            <mat-icon>password</mat-icon>
-          </button>
-          <input class="form-control input-field" id="re-password" name="password" type="text"/>
-        </div>
-      </div>
-<!--      phone-number-->
-      <div class="form-group">
-        <label class="control-label" for="phone">Số điện thoại</label>
-        <div class="input-group">
-          <button disabled class="btn btn-primary input-group-addon" style="padding-top: 10px">
-            <mat-icon>password</mat-icon>
-          </button>
-          <input class="form-control input-field" id="phone" name="password" type="text"/>
-        </div>
-      </div>
-      <div class="col-6 form-check d-flex justify-content-center mb-4 mt-4">
-        <input
-          class="form-check-input me-2"
-          type="checkbox"
-          value=""
-          id="form5Example3"
-          checked/>
-        <label class="form-check-label" for="form5Example3">
-          Tôi đồng ý với các điều khoản được đưa ra.
-        </label>
-      </div>
-      <div class="col-2 mt-3">
-        <button class="btn btn-primary mt-3">Đăng ký</button>
-      </div>
-    </form>
-  </div>
-
-  <!--  <div class="modal-footer">-->
-  <!--    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Hủy</button>-->
-  <!--  </div>-->
 </ng-template>
+
+
