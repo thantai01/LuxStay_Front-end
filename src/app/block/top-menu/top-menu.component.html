@@ -11,16 +11,32 @@
             <ul class="sf-menu" id="fh5co-primary-menu">
               <li><a href="index.html">Trang chủ</a></li>
               <li>
-                <a href="#" class="fh5co-sub-ddown">Chuyên mục</a>
+                <a href="#" class="fh5co-sub-ddown">Có gì mới</a>
                 <ul class="fh5co-sub-menu">
                   <li><a href="#">Đang giảm giá</a></li>
                   <li><a href="#">Địa điểm hot </a></li>
                   <li><a href="#">Trải nghiệm tốt nhất</a></li>
                 </ul>
               </li>
-              <li><a href="#">Về chúng tôi</a></li>
-              <li><a class="btn" data-toggle="modal" data-target="#SignInFormModal" (click)="open(SignInFormModal)">Trở thành chủ nhà</a></li>
-              <li><button class="btn btn-outline-success" mat-icon-button (click)="open(SignInFormModal)"><mat-icon>account_circle</mat-icon></button></li>
+<!--              <li><a href="#">Về chúng tôi</a></li>-->
+              <li><a class="btn" data-toggle="modal" data-target="#SignInFormModal" (click)="open(SignInFormModal)"  *ngIf="userLogged===false">Trở thành chủ nhà</a></li>
+              <li><button class="btn btn-outline-success" mat-icon-button (click)="open(SignInFormModal)" *ngIf="userLogged===false"><mat-icon>login</mat-icon></button></li>
+              <li>
+                <div class="btn-group" *ngIf="userLogged===true">
+                  <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true" mat-icon-button>
+                    <mat-icon>account_circle</mat-icon>
+                    Xin chào:
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> <mat-icon>notifications</mat-icon> Thông báo</button></li>
+                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> <mat-icon>data_usage</mat-icon> Thông tin cá nhân</button></li>
+                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> <mat-icon>compare_arrows</mat-icon> Danh sách yêu cầu</button></li>
+                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> <mat-icon>history</mat-icon> Lịch sử</button></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li class="list-prop"><button class="dropdown-item" mat-icon-button><mat-icon>logout</mat-icon> LoggedOut</button></li>
+                  </ul>
+                </div>
+              </li>
             </ul>
           </nav>
         </div>

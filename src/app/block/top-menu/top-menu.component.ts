@@ -8,6 +8,7 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class TopMenuComponent implements OnInit {
   closeResult: string;
+  userLogged = false;
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -28,5 +29,8 @@ export class TopMenuComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+  logged() {
+    this.userLogged = localStorage.getItem('userId') != null;
   }
 }
