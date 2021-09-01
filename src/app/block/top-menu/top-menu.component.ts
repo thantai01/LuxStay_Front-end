@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input, OnInit} from '@angular/core';
+import {ModalDismissReasons, NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-top-menu',
@@ -8,13 +9,17 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class TopMenuComponent implements OnInit {
   closeResult: string;
-  constructor(private modalService: NgbModal) { }
+  userLogged = false;
+  @Input() name;
+  constructor(private modalService: NgbModal,
+              private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',
+      size: 'lg', windowClass: 'your-modal-class'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -29,4 +34,8 @@ export class TopMenuComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+  logged() {
+    this.userLogged = localStorage.getItem('userId') != null;
+  }
+
 }
