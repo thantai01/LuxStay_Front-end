@@ -113,7 +113,7 @@
           <button disabled class="btn btn-primary input-group-addon" style="padding-top: 10px">
             <mat-icon>keyvpn</mat-icon>
           </button>
-          <input class="form-control input-field" id="username1" name="username" type="text"/>
+          <input class="form-control input-field" id="username1" name="username" type="text" required="required"/>
         </div>
       </div>
 <!--      password-->
@@ -146,12 +146,23 @@
           <input class="form-control input-field" id="phone" name="password" type="text"/>
         </div>
       </div>
-
-      <div class="col-2">
+      <div class="col-6 form-check d-flex justify-content-center mb-4 mt-4">
+        <input
+          class="form-check-input me-2"
+          type="checkbox"
+          value=""
+          id="form5Example3"
+          checked/>
+        <label class="form-check-label" for="form5Example3">
+          Tôi đồng ý với các điều khoản được đưa ra.
+        </label>
+      </div>
+      <div class="col-2 mt-3">
         <button class="btn btn-primary mt-3">Đăng ký</button>
       </div>
     </form>
   </div>
+
   <!--  <div class="modal-footer">-->
   <!--    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Hủy</button>-->
   <!--  </div>-->
