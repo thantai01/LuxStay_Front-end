@@ -12,6 +12,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { UserComponent } from './page/user/user.component';
+import { UserInfoComponent } from './block/user-info/user-info.component';
+import { LeftMenuComponent } from './block/left-menu/left-menu.component';
 
 
 @NgModule({
@@ -20,6 +23,9 @@ import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     TopMenuComponent,
     HomeComponent,
     CarouselComponent,
+    UserComponent,
+    UserInfoComponent,
+    LeftMenuComponent,
 
   ],
     imports: [

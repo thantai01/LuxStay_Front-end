@@ -1,0 +1,70 @@
+<app-top-menu></app-top-menu>
+<br>
+<br>
+<br>
+<br>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<div class="container-floast">
+  <div>
+    <div class="wrapper">
+      <!-- Sidebar Holder -->
+      <nav id="sidebar" class="active">
+        <div class="sidebar-header">
+          <!--        <h3>Bootstrap Sidebar</h3>-->
+        </div>
+        <ul class="list-unstyled components">
+          <!--        <li class="active">-->
+          <!--          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">-->
+          <!--            <i class="fa fa-home"></i>-->
+          <!--            Home-->
+          <!--          </a>-->
+          <!--          <ul class="collapse list-unstyled" id="homeSubmenu">-->
+          <!--            <li><a href="#">Home 1</a></li>-->
+          <!--            <li><a href="#">Home 2</a></li>-->
+          <!--            <li><a href="#">Home 3</a></li>-->
+          <!--          </ul>-->
+          <!--        </li>-->
+
+          <!--USER INFORMATION-->
+          <li>
+            <a href="#">
+              <i class="fa fa-briefcase"></i>
+              Thông tin cá nhân
+            </a>
+          </li>
+          <!--ApartmentList-->
+          <li>
+            <a href="#">
+              <i class="fa fa-link"></i>
+              Danh sách nhà đã đăng
+            </a>
+          </li>
+          <!--History-->
+          <li>
+            <a href="#">
+              <i class="fa fa-paperclip"></i>
+              Lịch sử thuê & cho thuê
+            </a>
+          </li>
+          <!--Notification-->
+          <li>
+            <a href="#">
+              <i class="fa fa-send"></i>
+              Thông báo
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Page Content Holder -->
+      <div class="container-fluid" id="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
