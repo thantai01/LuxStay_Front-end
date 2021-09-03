@@ -14,7 +14,11 @@ import {FormsModule} from '@angular/forms';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { UserComponent } from './page/user/user.component';
 import { UserInfoComponent } from './block/user-info/user-info.component';
-import { LeftMenuComponent } from './block/left-menu/left-menu.component';
+import { PersonalApartmentComponent } from './block/personal-apartment/personal-apartment.component';
+import { UserApartmentComponent } from './block/user-apartment/user-apartment.component';
+import { UserOrdersComponent } from './block/user-orders/user-orders.component';
+import { UserHistoryComponent } from './block/user-history/user-history.component';
+import { UserNotificationComponent } from './block/user-notification/user-notification.component';
 
 
 @NgModule({
@@ -25,7 +29,11 @@ import { LeftMenuComponent } from './block/left-menu/left-menu.component';
     CarouselComponent,
     UserComponent,
     UserInfoComponent,
-    LeftMenuComponent,
+    PersonalApartmentComponent,
+    UserApartmentComponent,
+    UserOrdersComponent,
+    UserHistoryComponent,
+    UserNotificationComponent,
 
   ],
     imports: [

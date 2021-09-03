@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeftMenuComponent } from './left-menu.component';
+import { UserNotificationComponent } from './user-notification.component';
 
-describe('LeftMenuComponent', () => {
-  let component: LeftMenuComponent;
-  let fixture: ComponentFixture<LeftMenuComponent>;
+describe('UserNotificationComponent', () => {
+  let component: UserNotificationComponent;
+  let fixture: ComponentFixture<UserNotificationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeftMenuComponent ]
+      declarations: [ UserNotificationComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LeftMenuComponent);
+    fixture = TestBed.createComponent(UserNotificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

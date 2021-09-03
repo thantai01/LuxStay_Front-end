@@ -1,18 +1,16 @@
 <app-top-menu></app-top-menu>
+<hr>
 <br>
 <br>
 <br>
-<br>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <div class="container-floast">
   <div>
     <div class="wrapper">
       <!-- Sidebar Holder -->
       <nav id="sidebar" class="active">
-        <div class="sidebar-header">
-          <!--        <h3>Bootstrap Sidebar</h3>-->
-        </div>
-        <ul class="list-unstyled components">
+        <ul class="components">
           <!--        <li class="active">-->
           <!--          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">-->
           <!--            <i class="fa fa-home"></i>-->
@@ -27,28 +25,35 @@
 
           <!--USER INFORMATION-->
           <li>
-            <a href="#">
+            <a routerLink="1/profile">
               <i class="fa fa-briefcase"></i>
               Thông tin cá nhân
             </a>
           </li>
           <!--ApartmentList-->
           <li>
-            <a href="#">
+            <a routerLink="1/for-rent">
               <i class="fa fa-link"></i>
               Danh sách nhà đã đăng
             </a>
           </li>
+<!--          ORDER-->
+          <li>
+            <a routerLink="1/orders">
+              <i class="fa fa-link"></i>
+              Danh sách yêu cầu
+            </a>
+          </li>
           <!--History-->
           <li>
-            <a href="#">
+            <a routerLink="1/histories">
               <i class="fa fa-paperclip"></i>
               Lịch sử thuê & cho thuê
             </a>
           </li>
           <!--Notification-->
           <li>
-            <a href="#">
+            <a routerLink="1/notifications">
               <i class="fa fa-send"></i>
               Thông báo
             </a>
@@ -56,7 +61,6 @@
 
         </ul>
       </nav>
-
       <!-- Page Content Holder -->
       <div class="container-fluid" id="content">
         <router-outlet></router-outlet>

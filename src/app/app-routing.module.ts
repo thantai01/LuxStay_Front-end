@@ -3,14 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from './page/home/home.component';
 import {UserComponent} from './page/user/user.component';
 import {UserInfoComponent} from './block/user-info/user-info.component';
+import {PersonalApartmentComponent} from './block/personal-apartment/personal-apartment.component';
+import {UserApartmentComponent} from './block/user-apartment/user-apartment.component';
+import {UserOrdersComponent} from './block/user-orders/user-orders.component';
+import {UserHistoryComponent} from './block/user-history/user-history.component';
+import {UserNotificationComponent} from './block/user-notification/user-notification.component';
 
 const routes: Routes = [{
   path: '',
   component: HomeComponent},
-  {
-    path: 'home',
-    redirectTo: '',
-  },
   {
     path: ':id',
     component: UserComponent,
@@ -20,6 +21,18 @@ const routes: Routes = [{
     }, {
       path: '',
       component: UserInfoComponent,
+    }, {
+      path: 'for-rent',
+      component: UserApartmentComponent,
+    }, {
+      path: 'orders',
+      component: UserOrdersComponent,
+    }, {
+      path: 'histories',
+      component: UserHistoryComponent,
+    }, {
+      path: 'notifications',
+      component: UserNotificationComponent,
     }]
   }
 ];
