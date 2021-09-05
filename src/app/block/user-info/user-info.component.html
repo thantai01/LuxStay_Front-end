@@ -49,10 +49,10 @@
       <div class="tab-content">
         <div class="tab-pane active" id="info">
           <hr>
-            <form class="form-group" [formGroup]="userForm" (submit)="updateCategory()">
+            <form class="form-group" [formGroup]="userForm" (submit)="updateUser()">
               <div class="col">
                 <label class="form-label" for="name">Họ tên</label>
-                <input class="form" type="text" id="name" style="margin-left: 70px" formControlName="name">
+                <input class="form" type="text" id="name" style="margin-left: 70px" formControlName="fullName">
               </div><br>
               <div class="col">
                 <label class="form-label" for="phone">Điện thoại</label>

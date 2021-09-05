@@ -108,6 +108,8 @@ export class TopMenuComponent implements OnInit {
     sessionStorage.removeItem('Name');
     sessionStorage.removeItem('Id');
     sessionStorage.removeItem('Avatar');
-    this.router.navigateByUrl('');
+    this.router.navigate(['']).then(() => {
+      window.location.reload();
+    });
   }
 }

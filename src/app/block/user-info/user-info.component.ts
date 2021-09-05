@@ -10,7 +10,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 })
 export class UserInfoComponent implements OnInit {
   userForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
+    fullName: new FormControl(''),
     phone: new FormControl(''),
     email: new FormControl(''),
     address: new FormControl(''),
@@ -34,7 +34,7 @@ export class UserInfoComponent implements OnInit {
     return this.auth.findById(id).subscribe(user => {
       console.log(user);
       this.userForm = new FormGroup({
-        name: new FormControl(user.fullName),
+        fullName: new FormControl(user.fullName),
         phone: new FormControl(user.phone),
         email: new FormControl(user.email),
         address: new FormControl(user.address),
@@ -45,8 +45,9 @@ export class UserInfoComponent implements OnInit {
       console.log(this.userForm);
     });
   }
-  updateCategory() {
+  updateUser() {
     const userInfo = this.userForm.value;
+    console.log(userInfo);
     this.auth.updateUserInfo(this.id, userInfo).subscribe(() => {
       console.log('Cập nhật thành công');
       this.log = 'Cập nhật thông tin thành công';
