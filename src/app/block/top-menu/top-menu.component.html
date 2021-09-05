@@ -18,21 +18,20 @@
                   <li><a href="#">Trải nghiệm tốt nhất</a></li>
                 </ul>
               </li>
-              <li><a class="fh5co-link" (click)="open(SignInFormModal)"  *ngIf="userLogged===false">Trở thành chủ nhà</a></li>
-              <li><a class="fh5co-link" (click)="open(SignInFormModal)" *ngIf="userLogged===false">Đăng nhập</a></li>
+              <li><a class="fh5co-link" (click)="open(SignInFormModal)"  *ngIf="checkLogged()==false">Trở thành chủ nhà</a></li>
+              <li><a class="fh5co-link" (click)="open(SignInFormModal)" *ngIf="checkLogged()==false">Đăng nhập</a></li>
               <li>
-                <div class="btn-group" *ngIf="userLogged===true">
-                  <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true" mat-icon-button>
-                    <mat-icon>account_circle</mat-icon>
-                    Xin chào:
-                  </button>
+                <div class="btn-group" *ngIf="checkLogged()==true">
+                  <a class="fh5co-sub-ddown dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                    Xin chào: {{this.tokenService.getName()}}
+                  </a>
                   <ul class="dropdown-menu">
-                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> <mat-icon>notifications</mat-icon> Thông báo</button></li>
-                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> <mat-icon>data_usage</mat-icon> Thông tin cá nhân</button></li>
-                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> <mat-icon>compare_arrows</mat-icon> Danh sách yêu cầu</button></li>
-                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> <mat-icon>history</mat-icon> Lịch sử</button></li>
+                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> Thông báo</button></li>
+                    <li class="list-prop"><a class="dropdown-item" routerLink="{{this.tokenService.getUserId()}}"> Trang cá nhân</a></li>
+                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> Danh sách yêu cầu</button></li>
+                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> Lịch sử</button></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li class="list-prop"><button class="dropdown-item" mat-icon-button><mat-icon>logout</mat-icon> LoggedOut</button></li>
+                    <li class="list-prop"><button class="dropdown-item" mat-icon-button (click)="logout()">Đăng xuất</button></li>
                   </ul>
                 </div>
               </li>
@@ -59,14 +58,16 @@
           </div>
           <div class="signin-form">
             <h2 class="form-title">Đăng nhập</h2>
-            <form method="POST" class="register-form" id="login-form">
+            <form id="login-form" class="form-login" (ngSubmit)="ngLogin()">
               <div class="form-group">
                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                <input type="text" name="your_name" id="your_name" placeholder="Tài khoản"/>
+                <input type="text" name="your_name" id="your_name" placeholder="Tài khoản"
+                       [(ngModel)]="form.username" #username="ngModel"/>
               </div>
               <div class="form-group">
                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                <input type="password" name="your_pass" id="your_pass" placeholder="Mật khẩu"/>
+                <input type="password" name="your_pass" id="your_pass" placeholder="Mật khẩu"
+                       [(ngModel)]="form.password" #password="ngModel"/>
               </div>
 <!--              <div class="form-group">-->
 <!--                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />-->
@@ -94,34 +95,45 @@
 
   </div>
 </ng-template>
+
 <!--register-->
 <ng-template #SignUpFormModal let-signUp>
   <div>
-<!--    <div class="modal-header">-->
-<!--      <h3 class="modal-title">I'm a modal!</h3>-->
-<!--    </div>-->
     <div class="modal-body">
 <!--      <section class="signup">-->
         <div class="container">
           <div class="signup-content">
             <div class="signup-form">
               <h2 class="form-title">Sign up</h2>
-              <form method="POST" class="register-form" id="register-form">
+              <form class="register-form" id="register-form" (ngSubmit)="ngSubmit()">
                 <div class="form-group">
-                  <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                  <input type="text" name="name" id="name" placeholder="Your Username"/>
+                  <mat-error class="alert-warning" >{{status}}</mat-error>
+                  <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                  <input type="text" name="username" id="username" placeholder="Tên đăng nhập"
+                         [(ngModel)]="form.username" #username="ngModel" required minlength="3" maxlength="50"/>
+                  <span class="alert-info" *ngIf="username.hasError('required')">Tên đăng nhập là bắt buộc</span>
+                  <mat-error *ngIf="username.hasError('minlength')">Tên đăng nhập tối thiểu 3 kí tự</mat-error>
                 </div>
                 <div class="form-group">
                   <label for="phone"><i class="zmdi zmdi-email"></i></label>
-                  <input type="email" name="email" id="phone" placeholder="Your Phone Number"/>
+                  <input type="text" id="phone" placeholder="Số điện thoại" name="phone"
+                         [(ngModel)]="form.phone" #phone="ngModel" required minlength="10" maxlength="11"/>
+                  <span class="alert-info" *ngIf="phone.hasError('required')">Vui lòng nhập số điện thoại</span>
+                  <mat-error  *ngIf="phone.hasError('minlength')">Số điện thoại phải có tối thiểu 10 số! </mat-error>
                 </div>
                 <div class="form-group">
                   <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                  <input type="password" name="pass" id="pass" placeholder="Password"/>
+                  <input type="password" name="pass" id="pass" placeholder="Password"
+                         [(ngModel)]="form.password" #password="ngModel" required minlength="6" maxlength="10" matInput [type]="hide ? 'password' : 'text'"/>
+                  <span class="alert-info" *ngIf="password.hasError('required')">Mật khẩu là bắt buộc</span>
+                  <mat-error *ngIf="password.hasError('minlength')">Mật khẩu phải có tối thiểu 6 kí tự</mat-error>
                 </div>
                 <div class="form-group">
-                  <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                  <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                  <label for="confirm"><i class="zmdi zmdi-lock-outline"></i></label>
+                  <input type="password" name="confirm" id="confirm" placeholder="Repeat your password"/>
+                  <mat-error hidden></mat-error>
+<!--                  <mat-error *ngIf="confirmPassword(password,rePass)!=true"> Mật khẩu nhập lại chưa đúng</mat-error>-->
+
                 </div>
                 <div class="form-group">
                   <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
@@ -134,13 +146,13 @@
             </div>
             <div class="signup-image">
               <figure><img src="assets/register/images/signup-image.jpg" alt="sing up image"></figure>
-              <a class="signup-image-link" (click)="signUp.dismiss();open(SignInFormModal)">I am already member</a>
+              <a class="signup-image-link" (click)="signUp.dismiss();open(SignInFormModal)">Đã là thành viên</a>
             </div>
           </div>
         </div>
+      <span class="alert-success">{{notice}}</span>
 <!--      </section>-->
     </div>
-<!--    <div class="modal-footer"></div>-->
   </div>
 </ng-template>
 

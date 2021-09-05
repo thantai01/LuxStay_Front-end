@@ -19,6 +19,8 @@ import { UserApartmentComponent } from './block/user-apartment/user-apartment.co
 import { UserOrdersComponent } from './block/user-orders/user-orders.component';
 import { UserHistoryComponent } from './block/user-history/user-history.component';
 import { UserNotificationComponent } from './block/user-notification/user-notification.component';
+import {HttpClientModule} from '@angular/common/http';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -36,16 +38,18 @@ import { UserNotificationComponent } from './block/user-notification/user-notifi
     UserNotificationComponent,
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatListModule,
-        MatIconModule,
-        MatButtonModule,
-        NgbModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    NgbModule,
+    FormsModule,
+    HttpClientModule,
+    MatInputModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
