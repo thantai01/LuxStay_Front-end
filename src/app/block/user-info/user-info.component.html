@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col-lg-3">
       <div class="text-center">
-        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img src="{{avatarUrl}}"  class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload a different photo...</h6>
         <input type="file" class="text-center center-block file-upload">
       </div><br>
@@ -34,10 +34,10 @@
       <div class="panel panel-default">
         <div class="panel-heading">Social Media</div>
         <div class="panel-body">
-          <i class="fa fa-facebook fa-2x">Facebook</i>
-          <i class="fa fa-github fa-2x">GitHub</i>
-          <i class="fa fa-twitter fa-2x">Tweeter</i>
-          <i class="fa fa-google-plus fa-2x">Google</i>
+<!--          <i class="fa fa-facebook fa-2x">Facebook</i>-->
+<!--          <i class="fa fa-github fa-2x">GitHub</i>-->
+<!--          <i class="fa fa-twitter fa-2x">Tweeter</i>-->
+<!--          <i class="fa fa-google-plus fa-2x">Google</i>-->
         </div>
       </div>
     </div>
@@ -49,29 +49,32 @@
       <div class="tab-content">
         <div class="tab-pane active" id="info">
           <hr>
-            <form class="form-group">
+            <form class="form-group" [formGroup]="userForm">
               <div class="col">
                 <label class="form-label" for="fullName">Họ tên</label>
-                <input class="form" type="text" id="fullName" style="margin-left: 70px">
+                <input class="form" type="text" id="fullName" style="margin-left: 70px" formControlName="name">
               </div><br>
               <div class="col">
                 <label class="form-label" for="phoneNums">Điện thoại</label>
-                <input class="form" type="text" id="phoneNums" style="margin-left: 70px">
+                <input class="form" type="text" id="phoneNums" style="margin-left: 70px" formControlName="phone">
               </div><br>
               <div class="col">
                 <label class="form-label" for="email">Email</label>
-                <input class="form" type="email" id="email" style="margin-left: 70px">
+                <input class="form" type="email" id="email" style="margin-left: 70px" formControlName="email">
               </div><br>
               <div class="col">
                 <label class="form-label" for="address1">Địa chị</label>
-                <input class="form" type="text" id="address1" style="margin-left: 70px">
+                <input class="form" type="text" id="address1" style="margin-left: 70px" formControlName="address">
               </div><br>
               <div class="col">
                 <label class="form-label" for="city">Tỉnh/Thành Phố</label>
-                <select class="form-select" id="city" style="margin-left: 100px">
-                  <option>Tỉnh /Thành phố</option>
-                </select>
+                <input class="form" type="text" id="city" style="margin-left: 70px" formControlName="city">
+<!--                <select class="form-select" id="city" style="margin-left: 100px">-->
+<!--                  <option>Tỉnh /Thành phố</option>-->
+<!--                </select>-->
               </div><br>
+              <input type="text" class="alert-info" formControlName="avatar"/>
+              <button class="btn btn-primary">Lưu lại thông tin cá nhân</button>
             </form>
           <hr>
         </div>

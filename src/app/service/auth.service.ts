@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {SignUpForm} from '../model/sign-up-form';
 import {JwtResponse} from '../model/jwt-response';
+import {User} from '../model/user';
 
 class SignInForm {
 }
@@ -14,11 +15,18 @@ class SignInForm {
 export class AuthService {
   private API_SIGNUP = environment.API_SERVER + '/auth/sign-up';
   private API_SIGNIN = environment.API_SERVER + '/auth/sign-in';
-  constructor(private http: HttpClient) { }
+  private API_USER = environment.API_SERVER + '/users';
+  constructor(private httpClient: HttpClient) { }
   signUp(signUp: SignUpForm): Observable<any>{
-    return this.http.post(this.API_SIGNUP, signUp);
+    return this.httpClient.post(this.API_SIGNUP, signUp);
   }
   signIn(signIn: SignInForm): Observable<JwtResponse>{
-    return this.http.post<JwtResponse>(this.API_SIGNIN, signIn);
+    return this.httpClient.post<JwtResponse>(this.API_SIGNIN, signIn);
+  }
+  findById(id: number): Observable<User> {
+    return this.httpClient.get<User>(this.API_USER + `/${id}`);
+  }
+  updateUserInfo(id: number, user: User): Observable<User>{
+    return this.httpClient.put<User>(this.API_USER + `/${id}`, user);
   }
 }

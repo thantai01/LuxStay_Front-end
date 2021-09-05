@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { UserComponent } from './page/user/user.component';
 import { UserInfoComponent } from './block/user-info/user-info.component';
@@ -38,18 +38,19 @@ import {MatInputModule} from '@angular/material/input';
     UserNotificationComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    NgbModule,
-    FormsModule,
-    HttpClientModule,
-    MatInputModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatListModule,
+        MatIconModule,
+        MatButtonModule,
+        NgbModule,
+        FormsModule,
+        HttpClientModule,
+        MatInputModule,
+        ReactiveFormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

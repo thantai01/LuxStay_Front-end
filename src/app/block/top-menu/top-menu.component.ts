@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalDismissReasons, NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {UserService} from '../../service/user.service';
 import {SignUpForm} from '../../model/sign-up-form';
 import {AuthService} from '../../service/auth.service';
 import {any} from 'codelyzer/util/function';
@@ -31,7 +30,6 @@ export class TopMenuComponent implements OnInit {
   notice: any;
   userLogged: any;
   constructor(private modalService: NgbModal,
-              private userService: UserService,
               private authService: AuthService,
               public tokenService: TokenService,
               private router: Router) { }
