@@ -49,14 +49,14 @@
       <div class="tab-content">
         <div class="tab-pane active" id="info">
           <hr>
-            <form class="form-group" [formGroup]="userForm">
+            <form class="form-group" [formGroup]="userForm" (submit)="updateCategory()">
               <div class="col">
-                <label class="form-label" for="fullName">Họ tên</label>
-                <input class="form" type="text" id="fullName" style="margin-left: 70px" formControlName="name">
+                <label class="form-label" for="name">Họ tên</label>
+                <input class="form" type="text" id="name" style="margin-left: 70px" formControlName="name">
               </div><br>
               <div class="col">
-                <label class="form-label" for="phoneNums">Điện thoại</label>
-                <input class="form" type="text" id="phoneNums" style="margin-left: 70px" formControlName="phone">
+                <label class="form-label" for="phone">Điện thoại</label>
+                <input class="form" type="text" id="phone" style="margin-left: 70px" formControlName="phone">
               </div><br>
               <div class="col">
                 <label class="form-label" for="email">Email</label>
@@ -76,6 +76,7 @@
               <input type="text" class="alert-info" formControlName="avatar"/>
               <button class="btn btn-primary">Lưu lại thông tin cá nhân</button>
             </form>
+          <a class="alert-info">{{log}}</a>
           <hr>
         </div>
         <div class="tab-pane" id="messages">

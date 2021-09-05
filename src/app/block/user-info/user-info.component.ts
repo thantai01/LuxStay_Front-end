@@ -19,20 +19,22 @@ export class UserInfoComponent implements OnInit {
   });
   id: number;
   avatarUrl: any;
+  log: any;
   constructor(private auth: AuthService,
               private activatedRoute: ActivatedRoute) {
-  }
-
-  ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
       this.getUser(this.id);
     });
   }
+
+  ngOnInit(): void {
+  }
   getUser(id: number) {
     return this.auth.findById(id).subscribe(user => {
+      console.log(user);
       this.userForm = new FormGroup({
-        name: new FormControl(user.name),
+        name: new FormControl(user.fullName),
         phone: new FormControl(user.phone),
         email: new FormControl(user.email),
         address: new FormControl(user.address),
@@ -41,6 +43,16 @@ export class UserInfoComponent implements OnInit {
       });
       this.avatarUrl = user.avatar;
       console.log(this.userForm);
+    });
+  }
+  updateCategory() {
+    const userInfo = this.userForm.value;
+    this.auth.updateUserInfo(this.id, userInfo).subscribe(() => {
+      console.log('Cập nhật thành công');
+      this.log = 'Cập nhật thông tin thành công';
+      sessionStorage.setItem('Name', this.userForm.value.name);
+    }, e => {
+      console.log(e);
     });
   }
 

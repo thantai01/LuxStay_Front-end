@@ -1,5 +1,5 @@
 export interface User {
-  name?: any;
+  fullName?: any;
   avatar?: any;
   address?: any;
   city?: any;
