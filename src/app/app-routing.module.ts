@@ -8,6 +8,7 @@ import {UserApartmentComponent} from './block/user-apartment/user-apartment.comp
 import {UserOrdersComponent} from './block/user-orders/user-orders.component';
 import {UserHistoryComponent} from './block/user-history/user-history.component';
 import {UserNotificationComponent} from './block/user-notification/user-notification.component';
+import {ApartmentCreateComponent} from './block/apartment-create/apartment-create.component';
 
 const routes: Routes = [{
   path: '',
@@ -33,6 +34,9 @@ const routes: Routes = [{
     }, {
       path: 'notifications',
       component: UserNotificationComponent,
+    }, {
+      path: 'new-apartment',
+      component: ApartmentCreateComponent,
     }]
   }
 ];

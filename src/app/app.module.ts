@@ -21,6 +21,7 @@ import { UserHistoryComponent } from './block/user-history/user-history.componen
 import { UserNotificationComponent } from './block/user-notification/user-notification.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
+import { ApartmentCreateComponent } from './block/apartment-create/apartment-create.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {MatInputModule} from '@angular/material/input';
     UserOrdersComponent,
     UserHistoryComponent,
     UserNotificationComponent,
+    ApartmentCreateComponent,
 
   ],
     imports: [
