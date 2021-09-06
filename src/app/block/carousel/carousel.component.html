@@ -1,7 +1,7 @@
 <aside id="fh5co-hero" class="js-fullheight">
   <div class="flexslider js-fullheight">
     <ul class="slides" >
-      <li *ngFor="let apartment of top5Apartments"  [ngStyle]="{ 'background-image': 'url(' + apartment.imageUrl + ')'}">
+      <li *ngFor="let apartment of top5Apartments"  [ngStyle]="{ 'background-image': 'url(' + apartment.imageList[0]+ ')'}">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-4 col-md-offset-4 col-md-pull-4 js-fullheight slider-text">
@@ -14,7 +14,7 @@
                   <p class="details">
                     <span><mat-icon>star_border</mat-icon>{{apartment.bethRoom}} phòng ngủ</span>
                     <span>{{apartment.bathRoom}} phòng tắm</span>
-                    <span>{{apartment.utilities}}</span>
+<!--                    <span>{{apartment.utilities}}</span>-->
 <!--                    <span>2 Garage</span>-->
                   </p>
                   <p><a class="btn btn-primary btn-lg" href="#">Chi tiết</a></p>

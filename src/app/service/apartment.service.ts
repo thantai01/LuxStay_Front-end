@@ -1,9 +1,31 @@
 import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Apartment} from '../model/apartment';
+import {environment} from '../../environments/environment';
+
+const APARTMENT_API = environment.API_SERVER;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApartmentService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) {
+  }
+  findAll(): Observable<any> {
+    return this.httpClient.get<Apartment[]>(APARTMENT_API + '/apartments');
+  }
+  findById(id: number): Observable<any> {
+    return this.httpClient.get<Apartment>(`${APARTMENT_API}/apartments/${id}`);
+  }
+  save(apartment): Observable<Apartment> {
+    return this.httpClient.post<Apartment>(APARTMENT_API + '/apartments', apartment);
+  }
+  edit(id: number, apartment: Apartment): Observable<Apartment> {
+    return this.httpClient.put<Apartment>(`${APARTMENT_API}/apartments/${id}`, apartment);
+  }
+  delete(id: number): Observable<Apartment> {
+    return this.httpClient.delete<Apartment>(`${APARTMENT_API}/apartments/${id}`);
+  }
 }

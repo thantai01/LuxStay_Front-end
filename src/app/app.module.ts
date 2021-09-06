@@ -22,6 +22,9 @@ import { UserNotificationComponent } from './block/user-notification/user-notifi
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import { ApartmentCreateComponent } from './block/apartment-create/apartment-create.component';
+import { ApartmentDetailComponent } from './page/apartment-detail/apartment-detail.component';
+import { ApartmentListComponent } from './page/apartment-list/apartment-list.component';
+import { TopNavComponent } from './block/top-nav/top-nav.component';
 
 
 @NgModule({
@@ -38,6 +41,9 @@ import { ApartmentCreateComponent } from './block/apartment-create/apartment-cre
     UserHistoryComponent,
     UserNotificationComponent,
     ApartmentCreateComponent,
+    ApartmentDetailComponent,
+    ApartmentListComponent,
+    TopNavComponent,
 
   ],
     imports: [

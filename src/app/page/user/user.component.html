@@ -1,78 +1,29 @@
-<app-top-menu></app-top-menu>
-<hr>
-<br>
-<br>
-<br>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<div class="container-floast">
-  <div>
-    <div class="wrapper">
-      <!-- Sidebar Holder -->
-      <nav id="sidebar" class="active">
-        <ul class="components">
-          <!--        <li class="active">-->
-          <!--          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">-->
-          <!--            <i class="fa fa-home"></i>-->
-          <!--            Home-->
-          <!--          </a>-->
-          <!--          <ul class="collapse list-unstyled" id="homeSubmenu">-->
-          <!--            <li><a href="#">Home 1</a></li>-->
-          <!--            <li><a href="#">Home 2</a></li>-->
-          <!--            <li><a href="#">Home 3</a></li>-->
-          <!--          </ul>-->
-          <!--        </li>-->
-
-          <!--USER INFORMATION-->
-          <li class="active">
-            <a routerLink="profile">
-              <i class="fa fa-briefcase"></i>
-              Thông tin cá nhân
-            </a>
-          </li>
-<!--          Add new Apartment-->
-          <li>
-            <a routerLink="new-apartment">
-              <i class="fa fa-briefcase"></i>
-              Đăng nhà cho thuê
-            </a>
-          </li>
-          <!--ApartmentList-->
-          <li>
-            <a routerLink="for-rent">
-              <i class="fa fa-link"></i>
-              Danh sách nhà đã đăng
-            </a>
-          </li>
-<!--          ORDER-->
-          <li>
-            <a routerLink="orders">
-              <i class="fa fa-link"></i>
-              Danh sách yêu cầu
-            </a>
-          </li>
-          <!--History-->
-          <li>
-            <a routerLink="histories">
-              <i class="fa fa-paperclip"></i>
-              Lịch sử thuê & cho thuê
-            </a>
-          </li>
-          <!--Notification-->
-          <li>
-            <a routerLink="notifications">
-              <i class="fa fa-send"></i>
-              Thông báo
-            </a>
-          </li>
-
-        </ul>
-      </nav>
-      <!-- Page Content Holder -->
-      <div class="container-fluid" id="content">
-        <router-outlet></router-outlet>
-      </div>
+<app-top-nav></app-top-nav>
+<div class="container-floast" style="padding-top: -50px">
+  <div class="col-3" id="viewport">
+    <div id="sidebar">
+      <header>
+        <a routerLink="profile">Thông tin cá nhân</a>
+      </header>
+      <header>
+        <a routerLink="new-apartment">Thêm mới nhà cho thuê</a>
+      </header>
+      <header>
+        <a routerLink="for-rent">Danh sách nhà đã đăng</a>
+      </header>
+      <header>
+        <a routerLink="orders">Danh sách yêu cầu thuê nhà</a>
+      </header>
+      <header>
+        <a routerLink="histories">Lịch sử thuê nhà</a>
+      </header>
+      <header>
+        <a routerLink="notifications">Thông báo</a>
+      </header>
     </div>
+  </div>
+  <div class="col-12" id="content">
+        <router-outlet></router-outlet>
   </div>
 </div>
 

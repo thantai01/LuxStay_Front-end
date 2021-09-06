@@ -1,46 +1,49 @@
-<!--top-menu-->
-<div id="fh5co-wrapper">
-  <div id="fh5co-page">
-    <header id="fh5co-header-section" class="sticky-banner">
-      <div class="container">
-        <div class="nav-header">
-          <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-          <h1 id="fh5co-logo"><a href="index.html"><i class="icon-home"></i>Lux<span>stay</span></a></h1>
-          <!-- START #fh5co-menu-wrap -->
-          <nav id="fh5co-menu-wrap" role="navigation">
-            <ul class="sf-menu" id="fh5co-primary-menu">
-              <li><a href="">Trang chủ</a></li>
-              <li>
-                <a href="#" class="fh5co-sub-ddown">Có gì mới</a>
-                <ul class="fh5co-sub-menu">
-                  <li><a href="#">Đang giảm giá</a></li>
-                  <li><a href="#">Địa điểm hot </a></li>
-                  <li><a href="#">Trải nghiệm tốt nhất</a></li>
-                </ul>
-              </li>
-              <li><a class="fh5co-link" (click)="open(SignInFormModal)"  *ngIf="checkLogged()==false">Trở thành chủ nhà</a></li>
-              <li><a class="fh5co-link" (click)="open(SignInFormModal)" *ngIf="checkLogged()==false">Đăng nhập</a></li>
-              <li>
-                <div class="btn-group" *ngIf="checkLogged()==true">
-                  <a class="fh5co-sub-ddown dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">
-                    Xin chào: {{this.tokenService.getName()}}
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> Thông báo</button></li>
-                    <li class="list-prop"><a class="dropdown-item" routerLink="user/{{this.tokenService.getUserId()}}"> Trang cá nhân</a></li>
-                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> Danh sách yêu cầu</button></li>
-                    <li class="list-prop"><button class="dropdown-item" mat-icon-button> Lịch sử</button></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li class="list-prop"><button class="dropdown-item" mat-icon-button (click)="logout()">Đăng xuất</button></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
-  </div>
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-custom navbar-mainbg">
+    <a class="navbar-brand navbar-logo" style="padding-left: 50px">
+      <img src="favicon.ico" alt="">
+      Lux Stay</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto" style="padding-left: 700px">
+        <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Trang chủ</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="javascript:void(0);">
+            <i class="far fa-address-book"></i>
+            Tìm kiếm tất cả</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0);" (click)="open(SignUpFormModal)"  *ngIf="checkLogged()==false">
+            <i class="far fa-clone"></i>
+            Trở thành chủ nhà</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0);" (click)="open(SignInFormModal)" *ngIf="checkLogged()==false">
+            <i class="far fa-calendar-alt"></i>
+            Đăng nhập</a>
+        </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>-->
+<!--        </li>-->
+        <li class="nav-item" *ngIf="checkLogged()==true">
+          <a class="nav-link" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" >
+            Xin chào: <span>{{this.tokenService.getName()}}</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="checkLogged()==true">
+          <a class="nav-link link-info" role="button" routerLink="user/{{this.tokenService.getUserId()}}">Tới trang cá nhân</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>
 
 
@@ -156,4 +159,23 @@
   </div>
 </ng-template>
 
+<!--off-canvas-->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Chi tiết người dùng</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="row mt-2"><a class="btn btn-outline" routerLink="user/{{this.tokenService.getUserId()}}">Thông tin chi tiết</a></div>
+    <div class="row mt-2"><a class="btn btn-outline">Thông báo</a></div>
+    <div class="row mt-2"><a class="btn btn-outline">Danh sách yêu cầu</a></div>
+    <div class="row mt-2"><a class="btn btn-outline">Lịch sử</a></div>
+    <br>
+    <div class="row mt-3"><a class="btn btn-outline" (click)="logout()">Thoát</a></div>
 
+    <a class="link-success"></a>
+    <a class="link-success"></a>
+    <a class="link-success"></a>
+    <a class="link-success"></a>
+  </div>
+</div>
