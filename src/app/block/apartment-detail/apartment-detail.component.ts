@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ApartmentDetailComponent implements OnInit {
 
-  apartmentHomes: ApartmentHouse;
+  apartment: ApartmentHouse;
   id: number;
 
   constructor(private apartmentHomeService: ApartmentHouseService,
@@ -24,10 +24,10 @@ export class ApartmentDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  // tslint:disable-next-line:typedef
   showDetail(id: number) {
-    this.apartmentHomeService.findById(id).subscribe(apartments => {
-      this.apartmentHomes = apartments;
+    this.apartmentHomeService.findById(id).subscribe(apartment => {
+      this.apartment = apartment;
+      console.log(apartment);
     });
   }
 }

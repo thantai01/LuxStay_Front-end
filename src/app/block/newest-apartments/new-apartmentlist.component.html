@@ -1,0 +1,19 @@
+<div class="row">
+<div class="col-md-3" *ngFor="let apartment of apartmentHouses">
+  <div class="property">
+    <a [routerLink]="['/apartments/', apartment.id,'/detail']" class="fh5co-property" [ngStyle]="{ 'background-image': 'url(' + apartment.imageList[0]?.imageUrl + ')'}">
+      <span class="status">Newest</span>
+      <ul class="list-details">
+        <li>{{apartment.bethRoom}} Phòng ngủ</li>
+        <li>{{apartment.bathRoom}} Phòng tắm</li>
+      </ul>
+    </a>
+    <div class="property-details">
+      <a routerLink="/apartments/{{apartment.id}}/detail"><h3>{{apartment.name}}</h3></a>
+      <span class="price">${{apartment.price}}/đêm.</span>
+      <p>{{apartment.description}}</p>
+      <span class="address text-info text-capitalize"><i class="icon-map"></i>, {{apartment.city}}, {{apartment.district}}, {{apartment.ward}}</span>
+    </div>
+  </div>
+</div>
+</div>
