@@ -1,4 +1,4 @@
-export interface Apartment {
+export class Apartment {
   id?: number;
   name?: string;
   apartmentType?: any;
