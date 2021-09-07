@@ -12,5 +12,5 @@ export interface Apartment {
   city?: string;
   district?: string;
   ward?: string;
-
+  userID?: any;
 }
