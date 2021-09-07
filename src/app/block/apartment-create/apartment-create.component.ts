@@ -117,6 +117,7 @@ export class ApartmentCreateComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url) => {
             image.imageUrl = url;
             this.images.push(image);
+            console.log(image);
           });
         })
       ).subscribe();
