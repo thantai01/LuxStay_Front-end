@@ -111,4 +111,10 @@ export class TopMenuComponent implements OnInit {
       window.location.reload();
     });
   }
+
+  returnHome() {
+    this.router.navigate(['']).then(() => {
+      window.location.reload();
+    });
+  }
 }

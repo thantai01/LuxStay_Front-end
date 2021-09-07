@@ -64,7 +64,7 @@ body {
 
 #sidebar .nav a{
   background: none;
-  border-bottom: 1px solid #e5e6e7;
+  /*border-bottom: 1px solid #e5e6e7;*/
   color: #CFD8DC;
   font-size: 14px;
   padding: 16px 24px;

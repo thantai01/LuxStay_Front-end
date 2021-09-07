@@ -1,21 +1,61 @@
-<div style="background-color: #c9e2b3">
-  <app-top-menu></app-top-menu><br><br><br><br><br>
+<!--<div class="container-floast">-->
+<!--  <div class="col-6" id="left">-->
+<!--    <div class="row mt-2" id="apartmentCarousel">-->
+<!--      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >-->
+<!--        <ol class="carousel-indicators">-->
+<!--          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>-->
+<!--          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>-->
+<!--          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
+<!--        </ol>-->
+<!--        <div class="carousel-inner">-->
+<!--          <div class="carousel-item active" *ngFor="let image of apartment.imageList" >-->
+<!--            <img class="d-block w-100" src="{{image.imageUrl}}" alt="First slide">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">-->
+<!--          <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--          <span class="sr-only">Previous</span>-->
+<!--        </a>-->
+<!--        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">-->
+<!--          <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--          <span class="sr-only">Next</span>-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="row mt-2" id="apartmentInfo">-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="col-6"></div>-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+
+
+<div>
   <div class="row ml-5 mr-5 detail">
     <div class="col-md-6 m-3">
       <div class="row">
-        <img *ngFor="let image of apartmentHomes.imageList" width="100%" height="220px" style="border-radius: 2px" src="{{image.imageUrl}}" class="imgProduct">
+        <img *ngFor="let image of apartment.imageList" width="100%" height="220px" style="border-radius: 2px" src="{{image.imageUrl}}" class="imgProduct" alt="">
       </div>
     </div>
     <div class="col-md-5">
       <div class="info-house mt-3">
         <div class="m-3">
-          <b><h2>{{apartmentHomes.name}}</h2></b>
-          <p>số phòng tắm: {{apartmentHomes.bethRoom}}</p>
-          <p>số phòng ngủ: {{apartmentHomes.bathRoom}}</p>
-          <p>giá nhà: {{apartmentHomes.price}}/1 đêm</p>
-          <p>Mô tả: {{apartmentHomes.description}}</p>
-          <p>loại phòng: {{apartmentHomes.apartmentType.name}}</p>
-          <p>Địa chỉ: {{apartmentHomes.address}}</p>
+          <h2>{{apartment.name}}</h2>
+          <p>số phòng tắm: {{apartment.bethRoom}}</p>
+          <p>số phòng ngủ: {{apartment.bathRoom}}</p>
+          <p>giá nhà: {{apartment.price}}/1 đêm</p>
+          <p>Mô tả: {{apartment.description}}</p>
+          <p>loại phòng: {{apartment.apartmentType.name}}</p>
+          <p>Địa chỉ: {{apartment.address}}</p>
         </div>
       </div>
       <div class="row">
@@ -24,11 +64,6 @@
             Thuê nhà
           </a>
         </div>
-        <!--      <div class="m-1">-->
-        <!--        <a class="btn btn-danger" [routerLink]="">-->
-        <!--          Sửa thông tin-->
-        <!--        </a>-->
-        <!--      </div>-->
       </div>
     </div>
   </div>
