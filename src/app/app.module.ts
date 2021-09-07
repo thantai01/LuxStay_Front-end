@@ -21,13 +21,12 @@ import { UserHistoryComponent } from './block/user-history/user-history.componen
 import { UserNotificationComponent } from './block/user-notification/user-notification.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
-
-import {AngularFireStorageModule} from '@angular/fire/storage';
-import {AngularFireModule} from '@angular/fire';
-import {environment} from '../environments/environment.prod';
 import { ApartmentCreateComponent } from './block/apartment-create/apartment-create.component';
 import { ApartmentListComponent } from './page/apartment-list/apartment-list.component';
 import { TopNavComponent } from './block/top-nav/top-nav.component';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireStorageModule} from "@angular/fire/storage";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {NewApartmentlistComponent} from './block/newest-apartments/new-apartmentlist.component';
