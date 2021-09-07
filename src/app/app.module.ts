@@ -29,6 +29,7 @@ import { ApartmentCreateComponent } from './block/apartment-create/apartment-cre
 import { ApartmentDetailComponent } from './page/apartment-detail/apartment-detail.component';
 import { ApartmentListComponent } from './page/apartment-list/apartment-list.component';
 import { TopNavComponent } from './block/top-nav/top-nav.component';
+import {NewApartmentlistComponent} from './block/new-apartmentlist/new-apartmentlist.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { TopNavComponent } from './block/top-nav/top-nav.component';
     ApartmentDetailComponent,
     ApartmentListComponent,
     TopNavComponent,
+    NewApartmentlistComponent,
 
   ],
     imports: [

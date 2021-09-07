@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {ApartmentHouse} from '../../model/apartment-house';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Apartmenttype} from '../../model/apartmenttype';
@@ -8,6 +8,7 @@ import {ApartmenttypeService} from '../../service/apartmenttype.service';
 import {ImageService} from '../../service/image.service';
 import {Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-apartment-create',
@@ -22,8 +23,16 @@ export class ApartmentCreateComponent implements OnInit {
 
   apartmentHomes: ApartmentHouse;
   arrayImage = '';
+  // @ts-ignore
+  selectedFile: File[];
+  // @ts-ignore
+  ref: AngularFireStorageReference;
+  downloadURL: string[] = [];
+  checkUploadFile = false;
+  @Output()
+  givenURLtoCreate = new EventEmitter<string[]>();
 
-  apartmentHomeForm: FormGroup = this.fb.group({
+  apartmentHomeForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(48)]),
     apartmentType: new FormControl(),
     bethRoom: new FormControl('', [Validators.required, Validators.min(1), Validators.maxLength(10)]),
@@ -42,9 +51,10 @@ export class ApartmentCreateComponent implements OnInit {
   constructor(private apartmentHomeService: ApartmentHouseService,
               private apartmentTypeService: ApartmenttypeService,
               private imageService: ImageService,
-              private  router: Router,
-              private db: AngularFireDatabase,
-              private fb: FormBuilder) { }
+              // private  router: Router,
+              // private db: AngularFireDatabase,
+              // private fb: FormBuilder,
+              private angularFireStore: AngularFireStorage) { }
 
   ngOnInit() {
     this.getAllApartmentType();
@@ -75,7 +85,7 @@ export class ApartmentCreateComponent implements OnInit {
       ward: this.apartmentHomeForm.get('ward').value,
       address: this.apartmentHomeForm.get('address').value,
       imageList: [{
-        imageUrl: ''
+        imageUrl: this.arrayImage
       }],
     };
   }
@@ -85,7 +95,7 @@ export class ApartmentCreateComponent implements OnInit {
       id: apartmentHome.apartmentType
     };
     this.setnewHouse();
-    this.apartmentHomeService.saveApartmentHome(this.apartmentHomes).subscribe(() => {
+    this.apartmentHomeService.saveApartmentHome(apartmentHome).subscribe(() => {
       alert('đăng nhà thành công');
       this.apartmentHomeForm.reset();
     }, e => console.log(e));
@@ -98,5 +108,30 @@ export class ApartmentCreateComponent implements OnInit {
   //   // @ts-ignore
   //   this.apartmentHomes.imageList = $event;
   // }
+  onFileChange($event: Event): void {
+    // @ts-ignore
+    this.selectedFile = $event.target.files;
+  }
 
+  onUpload(): void {
+    this.checkUploadFile = true;
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.selectedFile.length; i++) {
+      const name = this.selectedFile[i].name;
+      this.ref = this.angularFireStore.ref(name);
+      this.ref.put(this.selectedFile[i])
+        .then(snapshot => {
+          return snapshot.ref.getDownloadURL();
+        })
+        .then(downloadURL => {
+          this.downloadURL.push(downloadURL);
+          this.checkUploadFile = false;
+        })
+        .catch(error => {
+          console.log(`Failed to upload avatar and get link ${error}`);
+        });
+    }
+    console.log(this.downloadURL);
+    this.givenURLtoCreate.emit(this.downloadURL);
+  }
 }
