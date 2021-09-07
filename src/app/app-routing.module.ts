@@ -8,6 +8,7 @@ import {UserApartmentComponent} from './block/user-apartment/user-apartment.comp
 import {UserOrdersComponent} from './block/user-orders/user-orders.component';
 import {UserHistoryComponent} from './block/user-history/user-history.component';
 import {UserNotificationComponent} from './block/user-notification/user-notification.component';
+import {NewApartmentlistComponent} from './block/new-apartmentlist/new-apartmentlist.component';
 import {ApartmentCreateComponent} from './block/apartment-create/apartment-create.component';
 import {ApartmentDetailComponent} from './page/apartment-detail/apartment-detail.component';
 import {ApartmentListComponent} from './page/apartment-list/apartment-list.component';

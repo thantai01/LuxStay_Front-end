@@ -1,0 +1,36 @@
+<div style="background-color: #c9e2b3">
+  <app-top-menu></app-top-menu><br><br><br><br><br>
+  <div class="row ml-5 mr-5 detail">
+    <div class="col-md-6 m-3">
+      <div class="row">
+        <img *ngFor="let image of apartmentHomes.imageList" width="100%" height="220px" style="border-radius: 2px" src="{{image.imageUrl}}" class="imgProduct">
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="info-house mt-3">
+        <div class="m-3">
+          <b><h2>{{apartmentHomes.name}}</h2></b>
+          <p>số phòng tắm: {{apartmentHomes.bethRoom}}</p>
+          <p>số phòng ngủ: {{apartmentHomes.bathRoom}}</p>
+          <p>giá nhà: {{apartmentHomes.price}}/1 đêm</p>
+          <p>Mô tả: {{apartmentHomes.description}}</p>
+          <p>loại phòng: {{apartmentHomes.apartmentType.name}}</p>
+          <p>Địa chỉ: {{apartmentHomes.address}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="m-1 ml-3">
+          <a class="btn btn-info" [routerLink]="">
+            Thuê nhà
+          </a>
+        </div>
+        <!--      <div class="m-1">-->
+        <!--        <a class="btn btn-danger" [routerLink]="">-->
+        <!--          Sửa thông tin-->
+        <!--        </a>-->
+        <!--      </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+

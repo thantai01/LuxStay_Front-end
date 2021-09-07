@@ -21,11 +21,15 @@ import { UserHistoryComponent } from './block/user-history/user-history.componen
 import { UserNotificationComponent } from './block/user-notification/user-notification.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
+
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment.prod';
 import { ApartmentCreateComponent } from './block/apartment-create/apartment-create.component';
 import { ApartmentDetailComponent } from './page/apartment-detail/apartment-detail.component';
 import { ApartmentListComponent } from './page/apartment-list/apartment-list.component';
 import { TopNavComponent } from './block/top-nav/top-nav.component';
-import { OrderComponent } from './block/order/order.component';
+
 
 
 @NgModule({
@@ -41,11 +45,14 @@ import { OrderComponent } from './block/order/order.component';
     UserOrdersComponent,
     UserHistoryComponent,
     UserNotificationComponent,
+    ApartmentListComponent,
+    ApartmentCreateComponent,
+    ApartmentDetailComponent,
     ApartmentCreateComponent,
     ApartmentDetailComponent,
     ApartmentListComponent,
     TopNavComponent,
-    OrderComponent,
+
 
   ],
     imports: [
@@ -60,6 +67,8 @@ import { OrderComponent } from './block/order/order.component';
         HttpClientModule,
         MatInputModule,
         ReactiveFormsModule,
+        AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
     ],
   providers: [],
   bootstrap: [AppComponent]
