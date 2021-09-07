@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Inject} from '@angular/core';
 import {ApartmentHouse} from '../../model/apartment-house';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Apartmenttype} from '../../model/apartmenttype';
@@ -9,6 +9,10 @@ import {ImageService} from '../../service/image.service';
 import {Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {Observable} from "rxjs";
+import {finalize} from "rxjs/operators";
+import {formatDate} from "@angular/common";
+import {Apartment} from "../../model/apartment";
 
 @Component({
   selector: 'app-apartment-create',
@@ -20,18 +24,12 @@ import {AngularFireStorage} from '@angular/fire/storage';
   './assets/css/main.css']
 })
 export class ApartmentCreateComponent implements OnInit {
-
-  apartmentHomes: ApartmentHouse;
-  arrayImage = '';
+  apartmentHomes: Apartment;
   // @ts-ignore
   selectedFile: File[];
+  apartmenttypes: Apartmenttype[] = [];
+  images: Image[] = [];
   // @ts-ignore
-  ref: AngularFireStorageReference;
-  downloadURL: string[] = [];
-  checkUploadFile = false;
-  @Output()
-  givenURLtoCreate = new EventEmitter<string[]>();
-
   apartmentHomeForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(48)]),
     apartmentType: new FormControl(),
@@ -45,16 +43,13 @@ export class ApartmentCreateComponent implements OnInit {
     ward: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
-  apartmenttypes: Apartmenttype[] = [];
-  images: Image[] = [];
-
   constructor(private apartmentHomeService: ApartmentHouseService,
               private apartmentTypeService: ApartmenttypeService,
               private imageService: ImageService,
-              // private  router: Router,
+              private  router: Router,
               // private db: AngularFireDatabase,
               // private fb: FormBuilder,
-              private angularFireStore: AngularFireStorage) { }
+             @Inject(AngularFireStorage) private storage: AngularFireStorage) { }
 
   ngOnInit() {
     this.getAllApartmentType();
@@ -70,34 +65,32 @@ export class ApartmentCreateComponent implements OnInit {
       this.images = images;
     });
   }
-  setnewHouse(){
-    // @ts-ignore
-    this.apartmentHomes = {
-      name: this.apartmentHomeForm.get('name').value,
-      apartmentType: this.apartmentHomeForm.get('apartmentType').value,
-      bethRoom: this.apartmentHomeForm.get('bethRoom').value,
-      bathRoom: this.apartmentHomeForm.get('bathRoom').value,
-      description: this.apartmentHomeForm.get('description').value,
-      price: this.apartmentHomeForm.get('price').value,
-      status: this.apartmentHomeForm.get('status').value,
-      city: this.apartmentHomeForm.get('city').value,
-      district: this.apartmentHomeForm.get('district').value,
-      ward: this.apartmentHomeForm.get('ward').value,
-      address: this.apartmentHomeForm.get('address').value,
-      imageList: [{
-        imageUrl: this.arrayImage
-      }],
-    };
-  }
+  // setnewHouse(){
+  //   // @ts-ignore
+  //   this.apartmentHomes = {
+  //     name: this.apartmentHomeForm.get('name').value,
+  //     apartmentType: this.apartmentHomeForm.get('apartmentType').value,
+  //     bethRoom: this.apartmentHomeForm.get('bethRoom').value,
+  //     bathRoom: this.apartmentHomeForm.get('bathRoom').value,
+  //     description: this.apartmentHomeForm.get('description').value,
+  //     price: this.apartmentHomeForm.get('price').value,
+  //     status: this.apartmentHomeForm.get('status').value,
+  //     city: this.apartmentHomeForm.get('city').value,
+  //     district: this.apartmentHomeForm.get('district').value,
+  //     ward: this.apartmentHomeForm.get('ward').value,
+  //     address: this.apartmentHomeForm.get('address').value,
+  //     imageList: this.images,
+  //   };
+  // }
   submit() {
-    const apartmentHome = this.apartmentHomeForm.value;
-    apartmentHome.apartmentType = {
-      id: apartmentHome.apartmentType
-    };
-    this.setnewHouse();
-    this.apartmentHomeService.saveApartmentHome(apartmentHome).subscribe(() => {
+    this.apartmentHomes = new Apartment();
+    this.onUpload();
+     this.apartmentHomes = this.apartmentHomeForm.value;
+    this.apartmentHomes.imageList = this.images;
+    console.log(this.apartmentHomes);
+    this.apartmentHomeService.saveApartmentHome(this.apartmentHomes).subscribe(() => {
       alert('đăng nhà thành công');
-      this.apartmentHomeForm.reset();
+      this.router.navigate([''])
     }, e => console.log(e));
   }
   // saveImage($event) {
@@ -108,30 +101,29 @@ export class ApartmentCreateComponent implements OnInit {
   //   // @ts-ignore
   //   this.apartmentHomes.imageList = $event;
   // }
-  onFileChange($event: Event): void {
+  onFileChange(event: Event): void {
     // @ts-ignore
-    this.selectedFile = $event.target.files;
+    this.selectedFile = event.target.files;
   }
 
   onUpload(): void {
-    this.checkUploadFile = true;
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.selectedFile.length; i++) {
-      const name = this.selectedFile[i].name;
-      this.ref = this.angularFireStore.ref(name);
-      this.ref.put(this.selectedFile[i])
-        .then(snapshot => {
-          return snapshot.ref.getDownloadURL();
+     let image: Image = new  Image();
+      let nameImg = this.getCurrentDateTime() + this.selectedFile[i].name;
+      let fileRef = this.storage.ref(nameImg);
+      this.storage.upload(nameImg, this.selectedFile[i]).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            image.imageUrl = url;
+            this.images.push(image);
+          });
         })
-        .then(downloadURL => {
-          this.downloadURL.push(downloadURL);
-          this.checkUploadFile = false;
-        })
-        .catch(error => {
-          console.log(`Failed to upload avatar and get link ${error}`);
-        });
+      ).subscribe();
     }
-    console.log(this.downloadURL);
-    this.givenURLtoCreate.emit(this.downloadURL);
-  }
+    console.log(this.images);
+    }
+    getCurrentDateTime() {
+    return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
+    }
 }
