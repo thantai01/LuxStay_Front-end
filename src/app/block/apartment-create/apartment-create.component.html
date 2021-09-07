@@ -1,0 +1,83 @@
+
+<script src="assets/js/global.js"></script>
+<div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+  <div class="wrapper wrapper--w680">
+    <div class="card card-1">
+      <div class="card-heading"></div>
+      <div class="card-body">
+        <h2 class="title">Tạo nhà mới</h2>
+        <form method="POST" [formGroup]="apartmentHomeForm" (ngSubmit)="submit()">
+          <div class="input-group">
+            <input class="input--style-1" type="file" placeholder="NAME" name="name" formControlName="name">
+          </div>
+          <div class="input-group">
+            <input class="input--style-1" type="text" placeholder="NAME" name="name" formControlName="name">
+          </div>
+          <div class="input-group">
+            <div class="rs-select2 js-select-simple select--no-search">
+              <select name="class" formControlName="bethRoom">
+                <option disabled="disabled" selected="selected">number of bethroom</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+              <div class="select-dropdown"></div>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="rs-select2 js-select-simple select--no-search">
+              <select name="class" formControlName="bathRoom">
+                <option disabled="disabled" selected="selected">number of bathroom</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+              <div class="select-dropdown"></div>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="rs-select2 js-select-simple select--no-search">
+              <select name="class" formControlName="apartmentType">
+                <option selected [value]="null" disabled>Chọn loại nhà</option>
+                <option *ngFor="let category of apartmenttypes" [value]="category.id">{{category.name}}</option>
+              </select>
+              <div class="select-dropdown"></div>
+            </div>
+          </div>
+          <div class="input-group">
+            <input class="input--style-1" type="text" placeholder="description" name="description" formControlName="description">
+          </div>
+          <div class="input-group">
+            <input class="input--style-1" type="text" placeholder="price" name="price" formControlName="price">
+          </div>
+          <div class="input-group">
+            <input class="input--style-1" type="text" placeholder="status" name="status" formControlName="status">
+          </div>
+          <div class="input-group">
+            <input class="input--style-1" type="text" placeholder="city" name="city" formControlName="city">
+          </div>
+          <div class="input-group">
+            <input class="input--style-1" type="text" placeholder="district" name="district" formControlName="district">
+          </div>
+          <div class="input-group">
+            <input class="input--style-1" type="text" placeholder="ward" name="ward" formControlName="ward">
+          </div>
+          <div class="input-group">
+            <input class="input--style-1" type="text" placeholder="address" name="address" formControlName="address">
+          </div>
+          <div class="p-t-20">
+            <button class="btn btn--radius btn--green" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
