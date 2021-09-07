@@ -1,27 +1,130 @@
-<div class="container-fluid">
-  <br>
+<div class="container-floast">
   <br>
   <br>
   <div class="row">
-    <h1>Thêm mới nhà cho thuê</h1>
+    <h1 class="text-center">Thông tin nhà cho thuê</h1>
   </div>
   <div class="row">
     <div class="col-6">
-      <form>
-        <div class="input-group flex-nowrap">
-          <span class="input-group-text">Abc</span>
-          <input type="text" class="form-control" placeholder="Apartment Name" aria-label="ApartmentName"
+      <form class="form-submit bg-body bg-opacity-25">
+<!--        row 1-->
+        <div class="row">
+          <div class="input-group flex-nowrap mt-3">
+            <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+            <input type="text" class="form-control" placeholder="Tiêu đề" aria-label="ApartmentName"
                    aria-describedby="addon-wrapping" />
+          </div>
         </div>
-        <div class="input-group flex-nowrap mt-3">
-            <span class="input-group-text">Abc</span>
-            <select class="form-control">
-              <option></option>
-            </select>
-            <input type="text" class="form-control" placeholder="Apartment Name" aria-label="ApartmentName"
+<!--        row-2-->
+        <div class="row">
+          <div class="col-4">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+              <select class="form-control" aria-describedby="addon-wrapping">
+                <option>Tỉnh/Thành Phố</option>
+                <option></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+              <select class="form-control" aria-describedby="addon-wrapping">
+                <option>Quận/Huyện</option>
+                <option></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+              <select class="form-control" aria-describedby="addon-wrapping">
+                <option>Phường/Xã</option>
+                <option></option>
+              </select>
+            </div>
+          </div>
+        </div>
+<!--        row-3-->
+        <div class="row">
+          <div class="input-group flex-nowrap mt-3">
+            <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+            <input type="text" class="form-control" placeholder="Địa chỉ" aria-label="ApartmentName"
                    aria-describedby="addon-wrapping" />
+          </div>
         </div>
+<!--        row-4-->
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <select class="form-control" aria-describedby="addon-wrapping">
+                <option></option>
+              </select>
+              <span class="input-group-text">Phòng ngủ</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <select class="form-control text-center" aria-describedby="addon-wrapping">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              <span class="input-group-text">Phòng Tắm</span>
+            </div>
+          </div>
+        </div>
+<!--        row-5-->
+        <div class="row mt-3">
+          <div class="input-group flex-nowrap mt-3">
+            <div class="col">
+              <span class="input-group-text">Mô tả chi tiết</span>
+              <textarea class="form-control mt-3" id="form6Example7" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+<!--        row-6-->
+        <div class="row mt-3">
+          <input class="form-control" type="file" id="formFileMultiple" multiple />
+        </div>
+        <div class="row">
+          <button class="btn btn-success mt-3 float-start">Thêm nhà cho thuê</button>
+          <button class="btn btn-warning mt-3 float-end">Nhập lại</button>
+        </div>
+<!--        row-7-->
       </form>
+    </div>
+    <div class="col-6" style="width: 700px">
+      <div class="row">
+        <h2 class="text-center text-mute"> Thêm ảnh mô tả nhà </h2>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-3">
+          <img
+          src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+          width="500px"
+        /></div>
+        <div class="col-4 mb-3">
+          <img
+            src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+            width="500px"
+          /></div>
+        <div class="col-4 mb-3">
+          <img
+            src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+            width="500px"
+          /></div>
+        <div class="col-4 mb-3">
+          <img
+            src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+            width="500px"
+          /></div>
+        <div class="col-4 mb-3">
+          <img
+            src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+            width="500px"
+          /></div>
+      </div>
     </div>
   </div>
 </div>
