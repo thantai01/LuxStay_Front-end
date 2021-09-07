@@ -26,12 +26,13 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment.prod';
 import { ApartmentCreateComponent } from './block/apartment-create/apartment-create.component';
-import { ApartmentDetailComponent } from './page/apartment-detail/apartment-detail.component';
 import { ApartmentListComponent } from './page/apartment-list/apartment-list.component';
 import { TopNavComponent } from './block/top-nav/top-nav.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
-
+import {NewApartmentlistComponent} from './block/newest-apartments/new-apartmentlist.component';
+import { ApartmentsViewComponent } from './page/apartments-view/apartments-view.component';
+import {ApartmentDetailComponent} from './block/apartment-detail/apartment-detail.component';
 
 
 @NgModule({
@@ -49,14 +50,13 @@ import {MatTableModule} from '@angular/material/table';
     UserNotificationComponent,
     ApartmentListComponent,
     ApartmentCreateComponent,
-    ApartmentDetailComponent,
-    ApartmentCreateComponent,
-    ApartmentDetailComponent,
     ApartmentListComponent,
     TopNavComponent,
-
-
-  imports: [
+    NewApartmentlistComponent,
+    ApartmentsViewComponent,
+    ApartmentDetailComponent,
+  ],
+    imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -74,8 +74,6 @@ import {MatTableModule} from '@angular/material/table';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
-
-  
   providers: [],
   bootstrap: [AppComponent]
 })

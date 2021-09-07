@@ -13,11 +13,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 @Component({
   selector: 'app-apartment-create',
   templateUrl: './apartment-create.component.html',
-  styleUrls: ['./apartment-create.component.css', './assets/vendor/mdi-font/css/material-design-iconic-font.min.css',
-  './assets/vendor/font-awesome-4.7/css/font-awesome.min.css',
-  './assets/vendor/select2/select2.min.css',
-    './assets/vendor/datepicker/daterangepicker.css',
-  './assets/css/main.css']
+  styleUrls: ['./apartment-create.component.css']
 })
 export class ApartmentCreateComponent implements OnInit {
 

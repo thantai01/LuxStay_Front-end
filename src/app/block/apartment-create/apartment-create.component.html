@@ -1,12 +1,9 @@
 <div class="container-floast">
-
   <br>
   <div class="row">
-  </div>
-  <div class="row">
     <div class="col-6">
+      <span class="text-center" style="font-size: xx-large;color: white">Thông tin nhà cho thuê </span>
       <form class="form-submit bg-body bg-opacity-25" [formGroup]="apartmentHomeForm" (ngSubmit)="submit()">
-        <h1 class="text-center">Thông tin nhà cho thuê</h1>
 <!--        row 1-->
         <div class="row">
           <div class="input-group flex-nowrap mt-3">
@@ -15,29 +12,20 @@
                    aria-describedby="addon-wrapping" formControlName="name"/>
           </div>
         </div>
-        <!--        row 2-->
+        <!--row 2-->
         <div class="row">
           <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text"><mat-icon>toc</mat-icon></span>
-            <input type="text" class="form-control" placeholder="giá" aria-label="ApartmentName"
-                   aria-describedby="addon-wrapping" formControlName="price"/>
+            <input type="text" class="form-control" placeholder="Giá thuê đề xuất" aria-describedby="addon-wrapping" formControlName="price"/>
           </div>
         </div>
-
-        <div class="row">
-          <div class="input-group flex-nowrap mt-3">
-            <span class="input-group-text"><mat-icon>toc</mat-icon></span>
-            <input type="text" class="form-control" placeholder="status" aria-label="ApartmentName"
-                   aria-describedby="addon-wrapping" formControlName="status"/>
-          </div>
-        </div>
-
+        <!--row3-->
         <div class="row">
           <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text"><mat-icon>toc</mat-icon></span>
             <select class="form-control" aria-describedby="addon-wrapping">
               <option>Loại nhà</option>
-              <option></option>
+              <option *ngFor="let category of apartmenttypes" [value]="category.id">{{category.name}}</option>
             </select>
           </div>
         </div>
@@ -47,10 +35,7 @@
             <div class="input-group flex-nowrap mt-3">
               <span class="input-group-text"><mat-icon>toc</mat-icon></span>
               <select class="form-control" aria-describedby="addon-wrapping" formControlName="city">
-                <option>tỉnh/thành phố</option>
-                <option>hà nội</option>
-                <option>thành phố HCM</option>
-                <option>tuyên quang</option>
+                <option>Tỉnh/thành phố</option>
               </select>
             </div>
           </div>
@@ -59,9 +44,6 @@
               <span class="input-group-text"><mat-icon>toc</mat-icon></span>
               <select class="form-control" aria-describedby="addon-wrapping" formControlName="district">
                 <option>Quận/Huyện</option>
-                <option>hà nội</option>
-                <option>thành phố HCM</option>
-                <option>tuyên quang</option>
               </select>
             </div>
           </div>
@@ -70,9 +52,6 @@
               <span class="input-group-text"><mat-icon>toc</mat-icon></span>
               <select class="form-control" aria-describedby="addon-wrapping" formControlName="ward">
                 <option>Phường/Xã</option>
-                <option>hà nội</option>
-                <option>thành phố HCM</option>
-                <option>tuyên quang</option>
               </select>
             </div>
           </div>
@@ -81,24 +60,29 @@
         <div class="row">
           <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text"><mat-icon>toc</mat-icon></span>
-            <input type="text" class="form-control" placeholder="Địa chỉ" aria-label="ApartmentName"
-                   aria-describedby="addon-wrapping" formControlName="address"/>
+            <input type="text" class="form-control" placeholder="Địa chỉ" aria-describedby="addon-wrapping" formControlName="address"/>
           </div>
         </div>
 <!--        row-4-->
         <div class="row">
-          <div class="col-4">
+          <div class="col-6">
             <div class="input-group flex-nowrap mt-3">
               <select class="form-control" aria-describedby="addon-wrapping" formControlName="bethRoom">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
               </select>
               <span class="input-group-text">Phòng ngủ</span>
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-6">
             <div class="input-group flex-nowrap mt-3">
               <select class="form-control text-center" aria-describedby="addon-wrapping" formControlName="bathRoom">
                 <option value="1">1</option>
@@ -108,29 +92,20 @@
               <span class="input-group-text">Phòng Tắm</span>
             </div>
           </div>
-          <div class="col-4">
-            <div class="input-group flex-nowrap mt-3">
-              <select class="form-control text-center" aria-describedby="addon-wrapping" formControlName="apartmentType">
-                <option selected [value]="null" disabled>Chọn loại nhà</option>
-                <option *ngFor="let category of apartmenttypes" [value]="category.id">{{category.name}}</option>
-              </select>
-              <span class="input-group-text">loại nhà</span>
-            </div>
-          </div>
+
         </div>
 <!--        row-5-->
         <div class="row mt-3">
           <div class="input-group flex-nowrap mt-3">
             <div class="col">
-              <span class="input-group-text">Mô tả chi tiết</span>
-              <textarea class="form-control mt-3" id="form6Example7" rows="4" formControlName="description"></textarea>
+              <span class="input-group-text">Thêm mô tả chi tiết</span>
+              <textarea class="form-control" id="form6Example7" rows="4" formControlName="description"></textarea>
             </div>
           </div>
         </div>
 <!--        row-6-->
         <div class="row mt-3">
-          <input class="form-control" type="file" id="formFileMultiple" (change)="onFileChange($event)" multiple/>
-          <button (click)="onUpload()">Upload image</button>
+          <input class="form-control" type="file" id="formFileMultiple" (change)="onFileChange($event)" multiple (select)="onUpload()"/>
         </div>
         <div class="row">
           <button class="btn btn-success mt-3 float-start">Thêm nhà cho thuê</button>
@@ -141,7 +116,7 @@
     </div>
     <div class="col-6" style="width: 700px">
       <div class="row">
-        <h2 class="text-center text-mute"> Thêm ảnh mô tả nhà </h2>
+        <h2 class="text-center text-mute"> Ảnh mô tả nhà </h2>
       </div>
       <div class="row">
         <div class="col-4 mb-3" *ngFor="let url of downloadURL">

@@ -11,14 +11,14 @@ export class ApartmenttypeService {
 
   constructor(private http: HttpClient) { }
   getAll(): Observable<Apartmenttype[]> {
-    return this.http.get<Apartmenttype[]>(API_URL + '/apartmenttypes');
+    return this.http.get<Apartmenttype[]>(API_URL + '/apartment-types');
   }
 
   saveApartmentType(apartmentType): Observable<Apartmenttype> {
-    return this.http.post<Apartmenttype>(API_URL + '/apartmenttypes', apartmentType);
+    return this.http.post<Apartmenttype>(API_URL + '/apartment-types', apartmentType);
   }
 
   findById(id: number): Observable<Apartmenttype> {
-    return this.http.get<Apartmenttype>(`${API_URL}/apartmenttypes/${id}`);
+    return this.http.get<Apartmenttype>(`${API_URL}/apartment-types/${id}`);
   }
 }
