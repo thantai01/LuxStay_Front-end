@@ -1,10 +1,15 @@
 <div class="container-floast">
+
+  <br>
   <div class="row">
+
     <h1 class="text-center">Tạo nhà mới</h1>
+
   </div>
   <div class="row">
     <div class="col-6">
       <form class="form-submit bg-body bg-opacity-25" [formGroup]="apartmentHomeForm" (ngSubmit)="submit()">
+        <h1 class="text-center">Thông tin nhà cho thuê</h1>
 <!--        row 1-->
         <div class="row">
           <div class="input-group flex-nowrap mt-3">
@@ -27,6 +32,16 @@
             <span class="input-group-text"><mat-icon>toc</mat-icon></span>
             <input type="text" class="form-control" placeholder="status" aria-label="ApartmentName"
                    aria-describedby="addon-wrapping" formControlName="status"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group flex-nowrap mt-3">
+            <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+            <select class="form-control" aria-describedby="addon-wrapping">
+              <option>Loại nhà</option>
+              <option></option>
+            </select>
           </div>
         </div>
 <!--        row-2-->
@@ -158,6 +173,13 @@
 <!--            width="500px"-->
 <!--          /></div>-->
 <!--      </div>-->
+      <div class="row">
+        <div class="col-4 mb-3" *ngFor="let url of downloadURL">
+          <img
+            [src]="url" class="img-thumbnail" alt="..."
+          width="500px"
+        /></div>
+      </div>
     </div>
   </div>
 </div>

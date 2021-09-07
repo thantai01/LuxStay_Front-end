@@ -28,4 +28,7 @@ export class ApartmentService {
   delete(id: number): Observable<Apartment> {
     return this.httpClient.delete<Apartment>(`${APARTMENT_API}/apartments/${id}`);
   }
+  findAllByUser(id: number): Observable<Apartment[]>{
+    return this.httpClient.get<any>(`${APARTMENT_API}/apartments/findAllByUserId/${id}`);
+  }
 }

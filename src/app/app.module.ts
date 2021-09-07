@@ -28,6 +28,8 @@ import { TopNavComponent } from './block/top-nav/top-nav.component';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from "@angular/fire";
 import {AngularFireStorageModule} from "@angular/fire/storage";
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -53,22 +55,26 @@ import {AngularFireStorageModule} from "@angular/fire/storage";
     TopNavComponent,
 
 
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    NgbModule,
+    FormsModule,
+    HttpClientModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    ReactiveFormsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatListModule,
-        MatIconModule,
-        MatButtonModule,
-        NgbModule,
-        FormsModule,
-        HttpClientModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        AngularFireStorageModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-    ],
+
+  
   providers: [],
   bootstrap: [AppComponent]
 })
