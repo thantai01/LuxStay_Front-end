@@ -166,9 +166,11 @@ i {
   }
 }
 
-
+.modal-content {
+  box-sizing: content-box;
+}
 .modal-header {
-  /*box-sizing: border-box;*/
+  box-sizing: content-box;
   /*position: absolute;*/
   /*top: 0;*/
   /*width: 100%;*/
@@ -184,7 +186,7 @@ i {
   width: 700px;
   /*width: 100%;*/
   overflow-y: auto;
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
 
 .modal-footer{
@@ -195,7 +197,8 @@ i {
   /*width: 100%;*/
 }
 h2 {
-  color: white;
+  color: darkslateblue;
+
 }
 span {
   text-space: 5px;
