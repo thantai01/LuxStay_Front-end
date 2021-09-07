@@ -12,4 +12,8 @@ export class OrderService {
   booking(order: Order): Observable<any> {
     return this.http.post('http://localhost:8080/api/orders', order);
   }
+  getOrderOfUser(idUser: number): Observable<Order []> {
+    // @ts-ignore
+    return this.http.get<Order []>('http://localhost:8080/api/get/' + idUser);
+  }
 }
