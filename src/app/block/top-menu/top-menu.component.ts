@@ -33,7 +33,6 @@ export class TopMenuComponent implements OnInit {
               private authService: AuthService,
               public tokenService: TokenService,
               private router: Router) { }
-
   ngOnInit(): void {
   }
 
@@ -75,7 +74,7 @@ export class TopMenuComponent implements OnInit {
       }
       if (JSON.stringify(data) === JSON.stringify(this.success)){
         this.isRegisterSuccess = true;
-        this.notice = 'Tạo mới thành công!!! -->';
+        this.notice = 'Tạo tài khoản mới thành công!!! -->';
         console.log(this.notice);
       }
     });

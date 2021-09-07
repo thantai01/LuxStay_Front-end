@@ -10,12 +10,13 @@ import {UserHistoryComponent} from './block/user-history/user-history.component'
 import {UserNotificationComponent} from './block/user-notification/user-notification.component';
 import {NewApartmentlistComponent} from './block/new-apartmentlist/new-apartmentlist.component';
 import {ApartmentCreateComponent} from './block/apartment-create/apartment-create.component';
-import {ApartmentDetailComponent} from './block/apartment-detail/apartment-detail.component';
+import {ApartmentDetailComponent} from './page/apartment-detail/apartment-detail.component';
+import {ApartmentListComponent} from './page/apartment-list/apartment-list.component';
 
 const routes: Routes = [{
   path: '',
-  component: HomeComponent},
-  {
+  component: HomeComponent
+  }, {
     path: 'user/:id',
     component: UserComponent,
     children: [{
@@ -37,15 +38,15 @@ const routes: Routes = [{
       path: 'notifications',
       component: UserNotificationComponent,
     }, {
-      path: 'apartment-create',
-      component: ApartmentCreateComponent
+      path: 'new-apartment',
+      component: ApartmentCreateComponent,
     }]
   }, {
-  path: 'list',
-    component: NewApartmentlistComponent
+  path: 'apartment/:id/detail',
+    component: ApartmentDetailComponent,
   }, {
-    path: 'apartment-detail/:id',
-    component: ApartmentDetailComponent
+  path: 'apartments',
+    component: ApartmentListComponent,
   }
 ];
 

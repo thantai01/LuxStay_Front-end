@@ -21,13 +21,14 @@ import { UserHistoryComponent } from './block/user-history/user-history.componen
 import { UserNotificationComponent } from './block/user-notification/user-notification.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
-import { ApartmentListComponent } from './page/apartment-list/apartment-list.component';
-import { NewApartmentlistComponent } from './block/new-apartmentlist/new-apartmentlist.component';
-import { ApartmentCreateComponent } from './block/apartment-create/apartment-create.component';
-import { ApartmentDetailComponent } from './block/apartment-detail/apartment-detail.component';
+
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment.prod';
+import { ApartmentCreateComponent } from './block/apartment-create/apartment-create.component';
+import { ApartmentDetailComponent } from './page/apartment-detail/apartment-detail.component';
+import { ApartmentListComponent } from './page/apartment-list/apartment-list.component';
+import { TopNavComponent } from './block/top-nav/top-nav.component';
 
 
 @NgModule({
@@ -44,9 +45,12 @@ import {environment} from '../environments/environment.prod';
     UserHistoryComponent,
     UserNotificationComponent,
     ApartmentListComponent,
-    NewApartmentlistComponent,
     ApartmentCreateComponent,
     ApartmentDetailComponent,
+    ApartmentCreateComponent,
+    ApartmentDetailComponent,
+    ApartmentListComponent,
+    TopNavComponent,
 
   ],
     imports: [

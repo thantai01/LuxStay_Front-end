@@ -1,0 +1,8 @@
+a {
+  color: white;
+  font-weight: bolder;
+  text-decoration-color: white;
+}
+a:hover {
+  color: deepskyblue;
+}

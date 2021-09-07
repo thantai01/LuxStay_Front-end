@@ -1,81 +1,129 @@
-
-<script src="assets/js/global.js"></script>
-<div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
-  <div class="wrapper wrapper--w680">
-    <div class="card card-1">
-      <div class="card-heading"></div>
-      <div class="card-body">
-        <h2 class="title">Tạo nhà mới</h2>
-        <form method="POST" [formGroup]="apartmentHomeForm" (ngSubmit)="submit()">
-          <div class="input-group">
-            <input class="input--style-1" type="file" placeholder="NAME" name="name" formControlName="name">
+<div class="container-floast">
+  <br>
+  <br>
+  <div class="row">
+    <h1 class="text-center">Thông tin nhà cho thuê</h1>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <form class="form-submit bg-body bg-opacity-25">
+<!--        row 1-->
+        <div class="row">
+          <div class="input-group flex-nowrap mt-3">
+            <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+            <input type="text" class="form-control" placeholder="Tiêu đề" aria-label="ApartmentName"
+                   aria-describedby="addon-wrapping" />
           </div>
-          <div class="input-group">
-            <input class="input--style-1" type="text" placeholder="NAME" name="name" formControlName="name">
-          </div>
-          <div class="input-group">
-            <div class="rs-select2 js-select-simple select--no-search">
-              <select name="class" formControlName="bethRoom">
-                <option disabled="disabled" selected="selected">number of bethroom</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
+        </div>
+<!--        row-2-->
+        <div class="row">
+          <div class="col-4">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+              <select class="form-control" aria-describedby="addon-wrapping">
+                <option>Tỉnh/Thành Phố</option>
+                <option></option>
               </select>
-              <div class="select-dropdown"></div>
             </div>
           </div>
-          <div class="input-group">
-            <div class="rs-select2 js-select-simple select--no-search">
-              <select name="class" formControlName="bathRoom">
-                <option disabled="disabled" selected="selected">number of bathroom</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+          <div class="col-4">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+              <select class="form-control" aria-describedby="addon-wrapping">
+                <option>Quận/Huyện</option>
+                <option></option>
               </select>
-              <div class="select-dropdown"></div>
             </div>
           </div>
-          <div class="input-group">
-            <div class="rs-select2 js-select-simple select--no-search">
-              <select name="class" formControlName="apartmentType">
-                <option selected [value]="null" disabled>Chọn loại nhà</option>
-                <option *ngFor="let category of apartmenttypes" [value]="category.id">{{category.name}}</option>
+          <div class="col-4">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+              <select class="form-control" aria-describedby="addon-wrapping">
+                <option>Phường/Xã</option>
+                <option></option>
               </select>
-              <div class="select-dropdown"></div>
             </div>
           </div>
-          <div class="input-group">
-            <input class="input--style-1" type="text" placeholder="description" name="description" formControlName="description">
+        </div>
+<!--        row-3-->
+        <div class="row">
+          <div class="input-group flex-nowrap mt-3">
+            <span class="input-group-text"><mat-icon>toc</mat-icon></span>
+            <input type="text" class="form-control" placeholder="Địa chỉ" aria-label="ApartmentName"
+                   aria-describedby="addon-wrapping" />
           </div>
-          <div class="input-group">
-            <input class="input--style-1" type="text" placeholder="price" name="price" formControlName="price">
+        </div>
+<!--        row-4-->
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <select class="form-control" aria-describedby="addon-wrapping">
+                <option></option>
+              </select>
+              <span class="input-group-text">Phòng ngủ</span>
+            </div>
           </div>
-          <div class="input-group">
-            <input class="input--style-1" type="text" placeholder="status" name="status" formControlName="status">
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <select class="form-control text-center" aria-describedby="addon-wrapping">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              <span class="input-group-text">Phòng Tắm</span>
+            </div>
           </div>
-          <div class="input-group">
-            <input class="input--style-1" type="text" placeholder="city" name="city" formControlName="city">
+        </div>
+<!--        row-5-->
+        <div class="row mt-3">
+          <div class="input-group flex-nowrap mt-3">
+            <div class="col">
+              <span class="input-group-text">Mô tả chi tiết</span>
+              <textarea class="form-control mt-3" id="form6Example7" rows="4"></textarea>
+            </div>
           </div>
-          <div class="input-group">
-            <input class="input--style-1" type="text" placeholder="district" name="district" formControlName="district">
-          </div>
-          <div class="input-group">
-            <input class="input--style-1" type="text" placeholder="ward" name="ward" formControlName="ward">
-          </div>
-          <div class="input-group">
-            <input class="input--style-1" type="text" placeholder="address" name="address" formControlName="address">
-          </div>
-          <div class="p-t-20">
-            <button class="btn btn--radius btn--green" type="submit">Submit</button>
-          </div>
-        </form>
+        </div>
+<!--        row-6-->
+        <div class="row mt-3">
+          <input class="form-control" type="file" id="formFileMultiple" multiple />
+        </div>
+        <div class="row">
+          <button class="btn btn-success mt-3 float-start">Thêm nhà cho thuê</button>
+          <button class="btn btn-warning mt-3 float-end">Nhập lại</button>
+        </div>
+<!--        row-7-->
+      </form>
+    </div>
+    <div class="col-6" style="width: 700px">
+      <div class="row">
+        <h2 class="text-center text-mute"> Thêm ảnh mô tả nhà </h2>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-3">
+          <img
+          src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+          width="500px"
+        /></div>
+        <div class="col-4 mb-3">
+          <img
+            src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+            width="500px"
+          /></div>
+        <div class="col-4 mb-3">
+          <img
+            src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+            width="500px"
+          /></div>
+        <div class="col-4 mb-3">
+          <img
+            src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+            width="500px"
+          /></div>
+        <div class="col-4 mb-3">
+          <img
+            src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="img-thumbnail" alt="..."
+            width="500px"
+          /></div>
       </div>
     </div>
   </div>

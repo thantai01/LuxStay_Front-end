@@ -1,12 +1,16 @@
 export interface Apartment {
   id?: number;
   name?: string;
-  imageUrl?: string;
-  address?: string;
-  price?: string;
-  description?: string;
+  apartmentType?: any;
   bethRoom?: string;
   bathRoom?: string;
-  utilities?: any;
+  description?: string;
+  price?: any;
+  status?: string;
+  imageList?: any[];
+  address?: string;
+  city?: string;
+  district?: string;
+  ward?: string;
 
 }
