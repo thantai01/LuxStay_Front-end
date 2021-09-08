@@ -1,55 +1,67 @@
 <div class="container-fluid">
-  <br>
-  <span class="text-right" style="font-size: x-large;color: white">Thông tin nhà cho thuê </span>
   <div class="row">
-      <form class="form-submit bg-light"  [formGroup]="apartmentForm" (ngSubmit)="saveApartment()">
-        <table class="table table-borderless bg-gradient bg-opacity-50">
-          <tr>
-            <td colspan="2"><div class="input-group flex-nowrap">
-                <span class="input-group-text"><mat-icon>house</mat-icon>Tên căn hộ</span>
-                <input type="text" class="form-control" aria-label="ApartmentName"
-                       aria-describedby="addon-wrapping" formControlName="name"/>
-              </div></td>
-          </tr>
-          <tr>
-            <td colspan="2"><div class="input-group flex-nowrap">
-                  <span class="input-group-text">$ Giá đề xuất </span>
-                  <input type="text" class="form-control" placeholder="999000" aria-describedby="addon-wrapping"
-                         formControlName="price"/>
-                  <span class="input-group-text">VND/ngày</span>
-                </div></td>
-          </tr>
-          <tr>
-            <td><div class="input-group flex-nowrap">
-                  <span class="input-group-text"><mat-icon>list</mat-icon>Kiểu căn hộ</span>
-                  <select class="form-control" aria-describedby="addon-wrapping" formControlName="apartmentType">
-                    <option *ngFor="let category of apartmenttypes" [value]="category.id"
-                            [ngValue]="category.id">{{category.name}}</option>
-                  </select>
-            </div></td>
-            <td><div class="input-group flex-nowrap">
-                <span class="input-group-text"><mat-icon>near_me</mat-icon>Tỉnh/Thành phố</span>
-                <select class="form-control" aria-describedby="addon-wrapping" formControlName="city">
-                  <option>Tỉnh/TP</option>
-                </select>
-              </div></td>
-          </tr>
-          <tr>
-            <td><div class="input-group flex-nowrap">
+    <h1 class="text-center" style="font-size: x-large;color: white">Thông tin nhà cho thuê </h1>
+    <form class="form-submit bg-light" [formGroup]="apartmentForm" (ngSubmit)="saveApartment()">
+      <table class="table table-borderless bg-gradient bg-opacity-50">
+        <tr>
+          <td colspan="2">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text"><mat-icon>house</mat-icon>Tên căn hộ</span>
+              <input type="text" class="form-control" aria-label="ApartmentName"
+                     aria-describedby="addon-wrapping" formControlName="name"/>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text">$ Giá đề xuất </span>
+              <input type="text" class="form-control" placeholder="999000" aria-describedby="addon-wrapping"
+                     formControlName="price"/>
+              <span class="input-group-text">VND/ngày</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text"><mat-icon>list</mat-icon>Kiểu căn hộ</span>
+              <select class="form-control" aria-describedby="addon-wrapping" formControlName="apartmentType">
+                <option *ngFor="let category of apartmenttypes" [value]="category.id"
+                        [ngValue]="category.id">{{category.name}}</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text"><mat-icon>near_me</mat-icon>Tỉnh/Thành phố</span>
+              <select class="form-control" aria-describedby="addon-wrapping" formControlName="city">
+                <option>Tỉnh/TP</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="input-group flex-nowrap">
               <span class="input-group-text"><mat-icon>near_me</mat-icon>Quận/Huyện</span>
               <select class="form-control" aria-describedby="addon-wrapping" formControlName="district">
                 <option>Quận/Huyện</option>
               </select>
-            </div></td>
-            <td><div class="input-group flex-nowrap">
+            </div>
+          </td>
+          <td>
+            <div class="input-group flex-nowrap">
               <span class="input-group-text"><mat-icon>near_me</mat-icon>Xã/Phường</span>
               <select class="form-control" aria-describedby="addon-wrapping" formControlName="ward">
                 <option>Phường A</option>
               </select>
-            </div></td>
-          </tr>
-          <tr>
-            <td><div class="input-group flex-nowrap">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="input-group flex-nowrap">
               <span class="input-group-text"><mat-icon>groups</mat-icon>Số phòng ngủ</span>
               <select class="form-control" aria-describedby="addon-wrapping" formControlName="bethRoom">
                 <option value="1">1</option>
@@ -63,8 +75,10 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
               </select>
-            </div></td>
-            <td><div class="input-group flex-nowrap">
+            </div>
+          </td>
+          <td>
+            <div class="input-group flex-nowrap">
               <span class="input-group-text"><mat-icon>groups</mat-icon>Số phòng tắm</span>
               <select class="form-control text-center" aria-describedby="addon-wrapping" formControlName="bathRoom">
                 <option value="1">1</option>
@@ -73,32 +87,57 @@
                 <option value="3">4</option>
                 <option value="3">5</option>
               </select>
-            </div></td>
-          </tr>
-          <tr>
-            <td rowspan="3"><div class="input-group flex-nowrap wrapper">
-                <span class="input-group-text"><mat-icon>edit_location</mat-icon>Mô tả chi tiết </span>
-                <textarea class="form-control" id="form6Example7" rows="4" formControlName="description"></textarea>
-              </div>
-            </td>
-            <td><div class="input-group flex-nowrap">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="3">
+            <div class="input-group flex-nowrap wrapper">
+              <span class="input-group-text"><mat-icon>edit_location</mat-icon>Mô tả chi tiết </span>
+              <textarea class="form-control" id="form6Example7" rows="4" formControlName="description"></textarea>
+            </div>
+          </td>
+          <td>
+            <div class="input-group flex-nowrap">
               <span class="input-group-text"><mat-icon>file_upload</mat-icon>Thêm ảnh mô tả</span>
-              <input class="form-control" type="file" id="formFileMultiple" (change)="clearImages();onFileChange($event);onUpload()"
+              <input class="form-control" type="file" id="formFileMultiple"
+                     (change)="clearImages();onFileChange($event);onUpload()"
                      multiple/>
-            </div></td>
-          </tr>
-          <tr>
-            <td><p class="alert alert-primary font-weight-bolder mt-1 m-1">{{uploadImgSuccess}}</p></td>
-          </tr>
-          <tr>
-            <td>
-              <input type="button" class="btn btn-primary mb-3" value="Thêm mới">
-              <input type="reset" class="btn mb-3" value="Nhập lại">
-            </td>
-          </tr>
-        </table>
-      </form>
-
-
-
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ngb-alert type=success [dismissible]="false" *ngIf="uploadImgSuccess">
+              <strong>{{uploadImgSuccess}}.</strong>
+            </ngb-alert>
+           </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="button" class="btn btn-primary mb-3" value="Thêm mới" (click)="saveApartment()">
+            <input type="reset" class="btn mb-3" value="Nhập lại">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
 </div>
+
+
+<!--<button class="btn btn-outline-primary mb-2 mr-2" ()="openBackDropCustomClass(content)">Modal with backdrop custom class</button>-->
+
+<ng-template let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Chúc mừng</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p class="text-center text-xl-center">Thêm mới căn hộ thành công!</p>
+  </div>
+<!--  <div class="modal-footer">-->
+<!--    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>-->
+<!--  </div>-->
+</ng-template>

@@ -78,6 +78,7 @@ import { SearchComponent } from './page/search/search.component';
         MatSidenavModule,
         MatCheckboxModule,
         MatSelectModule,
+
     ],
   providers: [],
   bootstrap: [AppComponent]

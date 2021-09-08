@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter, Inject} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Inject, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Apartmenttype} from '../../model/apartmenttype';
 import {Image} from '../../model/image';
@@ -7,11 +7,12 @@ import {ImageService} from '../../service/image.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {Observable} from 'rxjs';
-import {finalize} from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {debounceTime, finalize} from 'rxjs/operators';
 import {formatDate} from '@angular/common';
 import {Apartment} from '../../model/apartment';
 import {ApartmentService} from '../../service/apartment.service';
+import {NgbAlert, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -49,7 +50,8 @@ export class ApartmentCreateComponent implements OnInit {
               private imageService: ImageService,
               private router: Router,
               @Inject(AngularFireStorage) private storage: AngularFireStorage,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -78,6 +80,8 @@ export class ApartmentCreateComponent implements OnInit {
         console.log(selectedApartment);
         this.saveImgToSql(selectedApartment.id);
         console.log('thêm ảnh vào nhà thành công');
+        this.apartmentCreated = 'Thêm căn hộ vào danh sách thành công!';
+        this.openSuccessDialog(this.apartmentCreated);
       }, error => {
         console.log(error);
       });
@@ -132,6 +136,10 @@ export class ApartmentCreateComponent implements OnInit {
 
   clearImages() {
     this.images = [];
+  }
+
+  openSuccessDialog(content) {
+    this.modalService.open(content, { size: 'lg', animation: true});
   }
 
 }
