@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
               private apartmentService: ApartmentService) { }
 
   ngOnInit(): void {
-    this.getAll();
+    this.get8Newest();
   }
-  getAll() {
-    this.apartmentService.findAll().subscribe(apartments => {
+  get8Newest() {
+    this.apartmentService.find8Newest().subscribe(apartments => {
       this.newestApartments = apartments;
       console.log(apartments);
     });

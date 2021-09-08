@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter, Inject} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Inject, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Apartmenttype} from '../../model/apartmenttype';
 import {Image} from '../../model/image';
@@ -7,11 +7,12 @@ import {ImageService} from '../../service/image.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {Observable} from 'rxjs';
-import {finalize} from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {debounceTime, finalize} from 'rxjs/operators';
 import {formatDate} from '@angular/common';
 import {Apartment} from '../../model/apartment';
 import {ApartmentService} from '../../service/apartment.service';
+import {NgbAlert, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -41,28 +42,16 @@ export class ApartmentCreateComponent implements OnInit {
     address: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
-  apartmentDetail: FormGroup = new FormGroup({
-    name: new FormControl(),
-    apartmentType: new FormControl(),
-    bethRoom: new FormControl(),
-    bathRoom: new FormControl(),
-    description: new FormControl(),
-    price: new FormControl(),
-    city: new FormControl(),
-    district: new FormControl(),
-    ward: new FormControl(),
-    address: new FormControl(),
-    status: new FormControl(),
-    user: new FormControl(),
-    imageList: new FormControl(),
-  });
+  uploadImgSuccess: any;
+  apartmentCreated: any;
 
   constructor(private apartmentService: ApartmentService,
               private apartmentTypeService: ApartmenttypeService,
               private imageService: ImageService,
               private router: Router,
               @Inject(AngularFireStorage) private storage: AngularFireStorage,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -91,6 +80,8 @@ export class ApartmentCreateComponent implements OnInit {
         console.log(selectedApartment);
         this.saveImgToSql(selectedApartment.id);
         console.log('thêm ảnh vào nhà thành công');
+        this.apartmentCreated = 'Thêm căn hộ vào danh sách thành công!';
+        this.openSuccessDialog(this.apartmentCreated);
       }, error => {
         console.log(error);
       });
@@ -120,6 +111,7 @@ export class ApartmentCreateComponent implements OnInit {
             this.images.push(image);
             console.log(image);
             console.log(this.images);
+            this.uploadImgSuccess = 'Chọn ảnh thành công!';
           });
         })
       ).subscribe();
@@ -142,13 +134,12 @@ export class ApartmentCreateComponent implements OnInit {
     }
   }
 
-  findApartmentById(apartmentId: number) {
-    this.apartmentService.findById(apartmentId).subscribe(apartment => {
-      this.selectedApartment = apartment;
-      console.log(apartment);
-      this.apartmentDetail = apartment;
-      console.log(this.apartmentDetail);
-    });
+  clearImages() {
+    this.images = [];
+  }
+
+  openSuccessDialog(content) {
+    this.modalService.open(content, { size: 'lg', animation: true});
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Apartment} from '../../model/apartment';
+import {ApartmentService} from '../../service/apartment.service';
 
 @Component({
   selector: 'app-carousel',
@@ -50,10 +51,10 @@ export class CarouselComponent implements OnInit {
   }]
   ;
 
-  constructor() { }
+  constructor(private apartmentService: ApartmentService) { }
 
   ngOnInit(): void {
-    console.log(this.top5Apartments);
   }
-
+  displayOnBrand() {
+  }
 }
