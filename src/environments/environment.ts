@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  API_SERVER: 'http://localhost:8080/api',
+  API_SERVER: 'http://localhost:8081/api',
   PROVINCE_API: 'https://provinces.open-api.vn/api/',
   DISTRICT_API: 'https://provinces.open-api.vn/api/d',
-  WARD_API: 'https://provinces.open-api.vn/api/'
+  WARD_API: 'https://provinces.open-api.vn/api/',
   firebaseConfig : {
     apiKey: 'AIzaSyA8jceJvbwC7C_Oleph-oPOx9tRplJrCvs',
     authDomain: 'luxstay-cec68.firebaseapp.com',

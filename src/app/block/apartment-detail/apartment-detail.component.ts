@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ApartmentHouse} from '../../model/apartment-house';
-import {ApartmentHouseService} from '../../service/apartment-house.service';
 import {ActivatedRoute} from '@angular/router';
+import {Apartment} from '../../model/apartment';
+import {ApartmentService} from '../../service/apartment.service';
 
 @Component({
   selector: 'app-apartment-detail',
@@ -10,10 +10,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ApartmentDetailComponent implements OnInit {
 
-  apartment: ApartmentHouse;
+  apartment: Apartment;
   id: number;
 
-  constructor(private apartmentHomeService: ApartmentHouseService,
+  constructor(private apartmentService: ApartmentService,
               private activatedRoute: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe(param => {
       // @ts-ignore
@@ -25,7 +25,7 @@ export class ApartmentDetailComponent implements OnInit {
   ngOnInit(): void {
   }
   showDetail(id: number) {
-    this.apartmentHomeService.findById(id).subscribe(apartment => {
+    this.apartmentService.findById(id).subscribe(apartment => {
       this.apartment = apartment;
       console.log(apartment);
     });
