@@ -12,5 +12,5 @@ export class Apartment {
   city?: string;
   district?: string;
   ward?: string;
-  userID?: any;
+  user?: any;
 }

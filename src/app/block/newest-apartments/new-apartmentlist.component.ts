@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ApartmentHouse} from '../../model/apartment-house';
-import {ApartmentHouseService} from '../../service/apartment-house.service';
+import {Apartment} from '../../model/apartment';
+import {ApartmentService} from '../../service/apartment.service';
 
 @Component({
   selector: 'app-new-apartmentlist',
@@ -9,9 +9,9 @@ import {ApartmentHouseService} from '../../service/apartment-house.service';
 })
 export class NewApartmentlistComponent implements OnInit {
 
-  apartmentHouses: ApartmentHouse[] = [];
+  apartmentHouses: Apartment[] = [];
 
-  constructor(private apartmentService: ApartmentHouseService) {
+  constructor(private apartmentService: ApartmentService) {
   }
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class NewApartmentlistComponent implements OnInit {
   }
 
   getAll() {
-    this.apartmentService.getAll().subscribe(apartments => {
+    this.apartmentService.findAll().subscribe(apartments => {
       this.apartmentHouses = apartments;
       console.log(apartments);
     });
