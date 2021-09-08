@@ -9,8 +9,8 @@ import {UserOrdersComponent} from './block/user-orders/user-orders.component';
 import {UserHistoryComponent} from './block/user-history/user-history.component';
 import {UserNotificationComponent} from './block/user-notification/user-notification.component';
 import {ApartmentCreateComponent} from './block/apartment-create/apartment-create.component';
-import {ApartmentListComponent} from './page/apartment-list/apartment-list.component';
-import {ApartmentsViewComponent} from './page/apartments-view/apartments-view.component';
+import {ViewDetailComponent} from './page/view-detail/view-detail.component';
+import {SearchComponent} from './page/search/search.component';
 
 const routes: Routes = [{
   path: '',
@@ -42,10 +42,10 @@ const routes: Routes = [{
     }]
   }, {
   path: 'apartments/:id/detail',
-    component: ApartmentsViewComponent,
+    component: ViewDetailComponent,
   }, {
-  path: 'apartments',
-    component: ApartmentListComponent,
+  path: 'search',
+    component: SearchComponent,
   }
 ];
 

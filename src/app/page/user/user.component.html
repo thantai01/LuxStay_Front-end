@@ -4,13 +4,26 @@
 <!--user-component-->
 <div class="container-fluid" id="user-component">
   <mat-drawer-container class="example-container" [hasBackdrop]="false">
-    <mat-drawer #drawer mode="push" >
+    <mat-drawer #drawer mode="push">
       <app-side-nav></app-side-nav>
     </mat-drawer>
     <mat-drawer-content>
-      <button id="menuBtn" mat-raised-button (click)="drawer.toggle()" mat-icon-button><mat-icon>list</mat-icon></button>
       <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="background-color: rgba(211,211,211,0.14)">
+          <div class="col-1 mt-1 mb-1">
+            <button class="mb-2" id="menuBtn" mat-raised-button (click)="drawer.toggle()" mat-icon-button><mat-icon>list</mat-icon></button>
+          </div>
+          <div class="col-2 mt-3 mb-3">
+            <a class="nav-link btn btn-outline mr-2 text-xxl-center"
+               (click)="toHomePage()">Trang chủ</a>
+          </div>
+          <div class="col-2 mt-3 mb-3">
+            <a class="nav-link btn btn-outline mr-2 text-xxl-center"
+               (click)="toSearchPage()">Tìm kiếm tất cả</a>
+          </div>
+          <hr>
+        </div>
+        <div class="row" style="margin-left: -10px">
           <router-outlet></router-outlet>
         </div>
       </div>

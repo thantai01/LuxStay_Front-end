@@ -2,9 +2,11 @@
   /*position: fixed;*/
   margin-left: -20px;
 }
+
+
 .example-container {
-  /*width: 400px;*/
-  /*height: 200px;*/
+  width: 1950px;
+  /*height: 100%;*/
   /*margin: 12px;*/
   /*border: 1px solid #555;*/
 }
@@ -14,7 +16,6 @@ mat-drawer {
 }
 
 mat-drawer-content {
-  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -23,7 +24,9 @@ mat-drawer-content {
 }
 
 #menuBtn {
-  /*margin-left: -10px;*/
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 button {
   background-color: deepskyblue;
@@ -33,3 +36,5 @@ button {
   color: deepskyblue;
   background-color: white;
 }
+
+

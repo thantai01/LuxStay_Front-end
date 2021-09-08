@@ -41,21 +41,8 @@ export class ApartmentCreateComponent implements OnInit {
     address: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
-  apartmentDetail: FormGroup = new FormGroup({
-    name: new FormControl(),
-    apartmentType: new FormControl(),
-    bethRoom: new FormControl(),
-    bathRoom: new FormControl(),
-    description: new FormControl(),
-    price: new FormControl(),
-    city: new FormControl(),
-    district: new FormControl(),
-    ward: new FormControl(),
-    address: new FormControl(),
-    status: new FormControl(),
-    user: new FormControl(),
-    imageList: new FormControl(),
-  });
+  uploadImgSuccess: any;
+  apartmentCreated: any;
 
   constructor(private apartmentService: ApartmentService,
               private apartmentTypeService: ApartmenttypeService,
@@ -120,6 +107,7 @@ export class ApartmentCreateComponent implements OnInit {
             this.images.push(image);
             console.log(image);
             console.log(this.images);
+            this.uploadImgSuccess = 'Chọn ảnh thành công!';
           });
         })
       ).subscribe();
@@ -142,13 +130,8 @@ export class ApartmentCreateComponent implements OnInit {
     }
   }
 
-  findApartmentById(apartmentId: number) {
-    this.apartmentService.findById(apartmentId).subscribe(apartment => {
-      this.selectedApartment = apartment;
-      console.log(apartment);
-      this.apartmentDetail = apartment;
-      console.log(this.apartmentDetail);
-    });
+  clearImages() {
+    this.images = [];
   }
 
 }

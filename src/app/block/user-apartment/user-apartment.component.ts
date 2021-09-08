@@ -4,9 +4,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import {ApartmentService} from '../../service/apartment.service';
 import {Apartment} from '../../model/apartment';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {FormControl, FormGroup} from '@angular/forms';
-
-
 
 @Component({
   selector: 'app-user-apartment',
