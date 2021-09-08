@@ -1,5 +1,11 @@
-#left {
-  background-color: yellow;
-  width: 1000px;
-  height: 500px;
+/*#left {*/
+/*  background-color: yellow;*/
+/*  width: 1000px;*/
+/*  height: 500px;*/
+/*}*/
+
+ngb-carousel {
+  width: 100%!important;
+  height: 100%!important;
+  background-size: 100% !important;
 }
