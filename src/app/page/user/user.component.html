@@ -1,33 +1,37 @@
-<app-top-nav></app-top-nav>
-<div class="row" style="height: 70px"></div>
-<div class="container-floast" style="padding-top: -50px">
-  <div class="col-3 bg-opacity-25" id="viewport">
-    <div id="sidebar">
-      <header>
-        <a routerLink="profile">Thông tin cá nhân</a>
-      </header>
-      <header>
-        <a routerLink="new-apartment">Thêm mới nhà cho thuê</a>
-      </header>
-      <header>
-        <a routerLink="for-rent">Danh sách nhà đã đăng</a>
-      </header>
-      <header>
-        <a routerLink="orders">Danh sách yêu cầu thuê nhà</a>
-      </header>
-      <header>
-        <a routerLink="histories">Lịch sử thuê nhà</a>
-      </header>
-      <header>
-        <a routerLink="notifications">Thông báo</a>
-      </header>
-    </div>
-  </div>
-  <div class="col-12" id="content">
-        <router-outlet></router-outlet>
-  </div>
+<!--<app-top-nav></app-top-nav>-->
+
+<!--<div class="row" style="height: 70px"></div>-->
+<!--user-component-->
+<div class="container-fluid" id="user-component">
+  <mat-drawer-container class="example-container" [hasBackdrop]="false">
+    <mat-drawer #drawer mode="push" >
+      <app-side-nav></app-side-nav>
+    </mat-drawer>
+    <mat-drawer-content>
+      <button id="menuBtn" mat-raised-button (click)="drawer.toggle()" mat-icon-button><mat-icon>list</mat-icon></button>
+      <div class="container-fluid">
+        <div class="row">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <!--      sidenav-options-->
+      <mat-form-field appearance="fill" hidden>
+        <mat-label>Sidenav mode</mat-label>
+        <mat-select #mode value="over">
+          <mat-option value="side">Side</mat-option>
+          <mat-option value="over">Over</mat-option>
+          <mat-option value="push">Push</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" hidden>
+        <mat-label>Has backdrop</mat-label>
+        <mat-select #hasBackdrop>
+          <mat-option>Unset</mat-option>
+          <mat-option [value]="true">True</mat-option>
+          <mat-option [value]="false">False</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </div>
-
-
-
 

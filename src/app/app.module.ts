@@ -32,6 +32,10 @@ import {MatTableModule} from '@angular/material/table';
 import {NewApartmentlistComponent} from './block/newest-apartments/new-apartmentlist.component';
 import { ApartmentsViewComponent } from './page/apartments-view/apartments-view.component';
 import {ApartmentDetailComponent} from './block/apartment-detail/apartment-detail.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { SideNavComponent } from './block/side-nav/side-nav.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -54,25 +58,29 @@ import {ApartmentDetailComponent} from './block/apartment-detail/apartment-detai
     NewApartmentlistComponent,
     ApartmentsViewComponent,
     ApartmentDetailComponent,
+    SideNavComponent,
   ],
     imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    NgbModule,
-    FormsModule,
-    HttpClientModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatPaginatorModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-  ],
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatListModule,
+        MatIconModule,
+        MatButtonModule,
+        NgbModule,
+        FormsModule,
+        HttpClientModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatPaginatorModule,
+        MatTableModule,
+        ReactiveFormsModule,
+        AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        MatSidenavModule,
+        MatCheckboxModule,
+        MatSelectModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
