@@ -22,16 +22,20 @@ import { UserNotificationComponent } from './block/user-notification/user-notifi
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import { ApartmentCreateComponent } from './block/apartment-create/apartment-create.component';
-import { ApartmentListComponent } from './page/apartment-list/apartment-list.component';
-import { TopNavComponent } from './block/top-nav/top-nav.component';
+
 import {environment} from '../environments/environment';
-import {AngularFireModule} from "@angular/fire";
-import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {NewApartmentlistComponent} from './block/newest-apartments/new-apartmentlist.component';
-import { ApartmentsViewComponent } from './page/apartments-view/apartments-view.component';
 import {ApartmentDetailComponent} from './block/apartment-detail/apartment-detail.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { SideNavComponent } from './block/side-nav/side-nav.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+import { ViewDetailComponent } from './page/view-detail/view-detail.component';
+import { SearchComponent } from './page/search/search.component';
 
 
 @NgModule({
@@ -47,32 +51,35 @@ import {ApartmentDetailComponent} from './block/apartment-detail/apartment-detai
     UserOrdersComponent,
     UserHistoryComponent,
     UserNotificationComponent,
-    ApartmentListComponent,
     ApartmentCreateComponent,
-    ApartmentListComponent,
-    TopNavComponent,
     NewApartmentlistComponent,
-    ApartmentsViewComponent,
     ApartmentDetailComponent,
+    SideNavComponent,
+    ViewDetailComponent,
+    SearchComponent,
   ],
     imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    NgbModule,
-    FormsModule,
-    HttpClientModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatPaginatorModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-  ],
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatListModule,
+        MatIconModule,
+        MatButtonModule,
+        NgbModule,
+        FormsModule,
+        HttpClientModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatPaginatorModule,
+        MatTableModule,
+        ReactiveFormsModule,
+        AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        MatSidenavModule,
+        MatCheckboxModule,
+        MatSelectModule,
+
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

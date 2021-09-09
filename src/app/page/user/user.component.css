@@ -1,89 +1,40 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
-
-body {
-  overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+#user-component {
+  /*position: fixed;*/
+  margin-left: -20px;
 }
 
-/* Toggle Styles */
 
-#viewport {
-  padding-left: 250px;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  float: top!important;
+.example-container {
+  width: 1950px;
+  /*height: 100%;*/
+  /*margin: 12px;*/
+  /*border: 1px solid #555;*/
 }
 
-#content {
-  padding-left: 300px;
-  /*position: relative;*/
-}
-
-/* Sidebar Styles */
-
-#sidebar {
-  z-index: 1000;
-  position: fixed;
-  /*left: 250px;*/
+mat-drawer {
   width: 300px;
-  height: 100%;
-  margin-left: -250px;
-  overflow-y: auto;
-  background: #e8e7e7;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
 }
 
-#sidebar header {
-  background-color: #e8e7e7;
-  font-size: 20px;
-  line-height: 52px;
-  text-align: center;
-  border: white 1px solid;
+mat-drawer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 1000px;
+  position: relative;
 }
 
-#sidebar header a {
-  color: #2a2a2a;
-  display: block;
-  text-decoration: none;
+#menuBtn {
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-
-#sidebar header a:hover {
-  color: #212121;
+button {
+  background-color: deepskyblue;
+  color: white;
+}
+#menuBtn button:hover {
+  color: deepskyblue;
   background-color: white;
 }
 
-#sidebar .nav{
-
-}
-
-#sidebar .nav a{
-  background: none;
-  /*border-bottom: 1px solid #e5e6e7;*/
-  color: #CFD8DC;
-  font-size: 14px;
-  padding: 16px 24px;
-}
-
-#sidebar .nav a:hover{
-  background: none;
-  color: #ECEFF1;
-}
-
-#sidebar .nav a i{
-  margin-right: 16px;
-}
-
-.container-fluid {
-  padding-left: -50px;
-}
-
-.row {
-  height: 60px;
-}
 
