@@ -36,28 +36,30 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import { ViewDetailComponent } from './page/view-detail/view-detail.component';
 import { SearchComponent } from './page/search/search.component';
+import {OrderComponent} from './block/order/order.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TopMenuComponent,
-    HomeComponent,
-    CarouselComponent,
-    UserComponent,
-    UserInfoComponent,
-    PersonalApartmentComponent,
-    UserApartmentComponent,
-    UserOrdersComponent,
-    UserHistoryComponent,
-    UserNotificationComponent,
-    ApartmentCreateComponent,
-    NewApartmentlistComponent,
-    ApartmentDetailComponent,
-    SideNavComponent,
-    ViewDetailComponent,
-    SearchComponent,
-  ],
+    declarations: [
+        AppComponent,
+        TopMenuComponent,
+        HomeComponent,
+        CarouselComponent,
+        UserComponent,
+        UserInfoComponent,
+        PersonalApartmentComponent,
+        UserApartmentComponent,
+        UserOrdersComponent,
+        UserHistoryComponent,
+        UserNotificationComponent,
+        ApartmentCreateComponent,
+        NewApartmentlistComponent,
+        ApartmentDetailComponent,
+        SideNavComponent,
+        ViewDetailComponent,
+        SearchComponent,
+        OrderComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,

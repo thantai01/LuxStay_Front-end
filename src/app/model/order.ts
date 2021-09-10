@@ -1,5 +1,6 @@
-import {User} from "./user";
-import {Apartment} from "./apartment";
+import {User} from './user';
+import {Apartment} from './apartment';
+
 
 export class  Order {
   startDate?: any;
@@ -9,6 +10,8 @@ export class  Order {
   rating?: any;
   comment?: any;
   checkin?: boolean;
-  user?: User;
-  apartmemt?: Apartment;
+  user?: any;
+  apartment?: any;
+  userPhoneNums?: any;
+  userFullName?: any;
 }

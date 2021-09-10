@@ -9,3 +9,8 @@ ngb-carousel {
   height: 100%!important;
   background-size: 100% !important;
 }
+
+ngb-carousel .picsum-img-wrapper img {
+  max-height: 600px!important;
+  /*min-width: auto;*/
+}

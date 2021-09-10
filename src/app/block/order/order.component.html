@@ -1,56 +1,93 @@
-<div class="row">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="col-md-8">
-    <form #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit()">
-      <!--Check In
-      <input type="date" placeholder="CheckIn" class="form-control" id="checkin" [(ngModel)]="booking.checkin" name="checkin" required>-->
-      <hr>
-      <div class="form-row">
-        <div class="col-md-6 mb-3">
-          <label>Check In</label>
-          <input type="date" class="form-control" name="checkin" [(ngModel)]="startDate" #checkin="ngModel"
-                 [ngClass]="{ 'is-invalid': userForm.submitted && checkin.invalid }" required>
-          <div *ngIf="userForm.submitted && checkin.invalid" class="invalid-feedback">
-            <div *ngIf="checkin.errors.required">Empty Date field</div>
-          </div>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>Check Out</label>
-          <input type="date" class="form-control" name="checkout" [(ngModel)]="endDate" #checkout="ngModel"
-                 [ngClass]="{ 'is-invalid': userForm.submitted && checkout.invalid }" required>
-          <div *ngIf="userForm.submitted && checkout.invalid" class="invalid-feedback">
-            <div *ngIf="checkout.errors.required">Empty Date Field</div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <br>
-<!--      <div class="form-row">-->
-<!--        <div class="col-md-6 mb-3">-->
-<!--          <label>Guest</label>-->
-<!--          <input type="number" class="form-control" name="numOfGuests" [(ngModel)]="booking.numOfGuests" #numOfGuests="ngModel"-->
-<!--                 [ngClass]="{ 'is-invalid': userForm.submitted && numOfGuests.invalid }" pattern="[1-3]{1}"  required>-->
-<!--          <div *ngIf="userForm.submitted && numOfGuests.invalid" class="invalid-feedback">-->
-<!--            <div *ngIf="numOfGuests.errors.required">Required</div>-->
-<!--            <div *ngIf="numOfGuests.errors.pattern">Not more than 3 Guests!</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-      <!--Guests
-      <input type="number" placeholder="Enter the number of guests" class="form-control" id="numOfGuests" [(ngModel)]="booking.numOfGuests" name="numOfGuests" required> <hr><br>-->
-
-      <button type="button" class="btn btn-info" (click)="cal()">Total Amount</button>
-      &nbsp;&nbsp;&nbsp;{{totalPaid}}<br>
-      <hr><br>
-
+<div class="container-fluid">
+  <div class="row"></div>
+  <div class="row">
+    <div class="col-4">
+      <h1 class="text-xl-start text-decoration-underline text-secondary">Chọn lịch trình</h1>
+      <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+                      outsideDays="hidden">
+      </ngb-datepicker>
+      <ng-template #t let-date let-focused="focused">
+  <span class="custom-day"
+        [class.text-success]="t"
+        [class.focused]="focused"
+        [class.range]="isRange(date)"
+        [class.faded]="isHovered(date) || isInside(date)"
+        (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null">
+    {{ date.day }}
+  </span>
+      </ng-template>
       <div class="row">
-        <div class="col-md-4">
-          <button type="submit" class="btn btn-success btn-block">Book</button>
-        </div>
-        <div class="col-md-4">
-          <button type="submit" class="btn btn-danger btn-block" (click)="homePage()">Cancel Booking</button>
-        </div>
+        <table class="table table-borderless">
+          <tr>
+            <td class="font-italic text-decoration-underline" style="width: 120px">Bạn đã chọn:</td>
+            <td class="form-group">
+              <p class="font-weight-bold">Từ ngày: </p>
+              <p class="text-success text-md-start font-weight-bolder">{{ startDateJs | date:'dd/MM/yyyy' }}</p>
+            </td>
+            <td class="form-group">
+              <p class="font-weight-bold">Đến ngày: </p>
+              <p class="text-success text-md-start font-weight-bolder">{{ endDateJs | date: 'dd/MM/yyyy' }}</p>
+            </td>
+          </tr>
+        </table>
       </div>
-    </form>
+    </div>
+    <div class="col-4">
+      <form [formGroup]="orderForm">
+        <table class="table table-light border-bottom text-center">
+          <tr>
+            <th colspan="2" class="text-center">
+              <h1 class="text-xl">Thông tin đặt chỗ</h1>
+            </th>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text">Họ tên khách hàng</span>
+                <input type="text" class="form-control" (change)="cal()"
+                       aria-describedby="addon-wrapping" formControlName="userFullName"/>
+                <mat-error *ngIf=""></mat-error>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text">Điện thoại liên hệ</span>
+                <input type="text" class="form-control" (change)="cal()"
+                       aria-describedby="addon-wrapping" formControlName="userPhoneNums"/>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text">Số ngày đã đặt:</span>
+                <input type="text" class="form-control" disabled
+                       aria-describedby="addon-wrapping" value="{{day}}"/>
+              </div>
+            </td>
+            <td>
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text">Tổng tiền:</span>
+                <input type="text" class="form-control " disabled
+                       aria-describedby="addon-wrapping" value="{{totalPaid}}"/>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button class="btn btn-primary" (click)="createRentOrder()">Gửi yêu cầu</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="col-4" *ngIf="orderCreated === true">
+      <p>
+        <ngb-alert type="success">Gửi yêu cầu thành công! Vui lòng chờ xác nhận từ chủ nhà</ngb-alert>
+      </p>
+    </div>
   </div>
 </div>

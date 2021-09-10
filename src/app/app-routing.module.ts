@@ -11,6 +11,7 @@ import {UserNotificationComponent} from './block/user-notification/user-notifica
 import {ApartmentCreateComponent} from './block/apartment-create/apartment-create.component';
 import {ViewDetailComponent} from './page/view-detail/view-detail.component';
 import {SearchComponent} from './page/search/search.component';
+import {OrderComponent} from './block/order/order.component';
 
 const routes: Routes = [{
   path: '',
@@ -43,6 +44,10 @@ const routes: Routes = [{
   }, {
   path: 'apartments/:id/detail',
     component: ViewDetailComponent,
+    children: [{
+      path: 'order',
+      component: OrderComponent
+  }]
   }, {
   path: 'search',
     component: SearchComponent,
