@@ -12,6 +12,7 @@ import {ApartmentCreateComponent} from './block/apartment-create/apartment-creat
 import {ViewDetailComponent} from './page/view-detail/view-detail.component';
 import {SearchComponent} from './page/search/search.component';
 import {OrderComponent} from './block/order/order.component';
+import {ApartmentDetailComponent} from './block/apartment-detail/apartment-detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -28,6 +29,10 @@ const routes: Routes = [{
     }, {
       path: 'for-rent',
       component: UserApartmentComponent,
+      children: [{
+        path: ':id/detail',
+        component: ApartmentDetailComponent
+      }]
     }, {
       path: 'orders',
       component: UserOrdersComponent,
