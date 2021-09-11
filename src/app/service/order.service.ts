@@ -15,7 +15,13 @@ export class OrderService {
   booking(order: Order): Observable<any> {
     return this.http.post(ORDER_API, order);
   }
-  getOrderOfUser(idUser: number): Observable<Order []> {
-    return this.http.get<Order []>(ORDER_API + idUser);
+  findAllOrderByUserId(userId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(ORDER_API + '/' + userId);
+  }
+  findAllOrderOfApartment(apartmentId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(ORDER_API + '/findByApartment/' + apartmentId);
+  }
+  findAllOrderOfUser(userId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(ORDER_API + '/findByUser/' + userId);
   }
 }

@@ -6,10 +6,11 @@ import {User} from '../../model/user';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ApartmentService} from '../../service/apartment.service';
 import {AuthService} from '../../service/auth.service';
-import {NgbCalendar, NgbDate, NgbDateParserFormatter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgbCalendar, NgbDate, NgbDateParserFormatter, NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {NgbDateParseCustomsFormaterService} from '../../service/ngb-date-parse-customs-formater.service';
 import {error} from 'protractor';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {OrderDayService} from '../../service/order-day.service';
 
 
 @Component({
@@ -27,18 +28,40 @@ export class OrderComponent implements OnInit {
     userFullName: new FormControl('', Validators.required),
   });
 
+  isDisabled;
+  json = {
+    disable: [],
+    disabledDates: [
+      // { year: 2021, month: 9, day: 23 },
+    ]
+  };
+
   constructor(private orderService: OrderService,
               private router: Router,
               private route: ActivatedRoute,
               private apartmentService: ApartmentService,
               private userService: AuthService,
-              calendar: NgbCalendar,
               private ngbDateParse: NgbDateParseCustomsFormaterService,
-              private config: NgbDatepickerConfig) {
+              private config: NgbDatepickerConfig,
+              private calendar: NgbCalendar,
+              private dayOrderedService: OrderDayService) {
     const current = new Date();
     config.minDate = { year: current.getFullYear(), month: current.getMonth() + 1, day: current.getDate() };
     config.maxDate = { year: 2099, month: 12, day: 31 };
-    config.outsideDays = 'visible';
+    config.outsideDays = 'hidden';
+
+    // to disable specific date and specific weekdays
+    this.isDisabled = (
+      date: NgbDateStruct
+    // current: { day: number; month: number; year: number }
+    ) => {
+      return !!this.json.disabledDates.find(x =>
+        (new NgbDate(x.year, x.month, x.day).equals(date))
+        || (this.json.disable.includes(calendar.getWeekday(new NgbDate(date.year, date.month, date.day))) )
+      );
+        // ? true
+        // : false;
+    };
   }
 
   hoveredDate: NgbDate | null = null;
@@ -50,7 +73,9 @@ export class OrderComponent implements OnInit {
   apartmentPrice: any;
   apartmentId: any;
   orderCreated: any;
+
   ngOnInit(): void {
+    this.disableAllDayInOrder();
   }
   cal() {
     let date1;
@@ -131,6 +156,35 @@ export class OrderComponent implements OnInit {
 
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date);
+  }
+
+  disableAllDayInOrder() {
+    const dayTime = [];
+    let dateJs;
+    let ngbDateStruct: NgbDateStruct;
+    this.dayOrderedService.findAllDayInOrderByApartment(+sessionStorage.getItem('aId')).subscribe(dayOrdered => {
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < dayOrdered.length; i++) {
+        dayTime.push(dayOrdered[i].dayInOrder);
+      }
+      // tslint:disable-next-line:prefer-for-of
+      for (let j = 0; j < dayTime.length; j++) {
+        dateJs = new Date(dayTime[j]);
+        ngbDateStruct = { year: dateJs.getUTCFullYear(), month: dateJs.getUTCMonth() + 1 , day: dateJs.getUTCDate() };
+        this.json.disabledDates.push(ngbDateStruct);
+        console.log(this.json.disabledDates);
+        // console.log(this.json);
+      }
+    });
+    this.isDisabled = (
+      date: NgbDateStruct
+      // current: { day: number; month: number; year: number }
+    ) => {
+      return !!this.json.disabledDates.find(x =>
+        (new NgbDate(x.year, x.month, x.day).equals(date))
+        || (this.json.disable.includes(this.calendar.getWeekday(new NgbDate(date.year, date.month, date.day))) )
+      );
+    };
   }
 
 }
