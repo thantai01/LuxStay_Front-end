@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Apartment} from '../../model/apartment';
 import {ApartmentService} from '../../service/apartment.service';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Order} from "../../model/order";
+import {OrderService} from "../../service/order.service";
 
 @Component({
   selector: 'app-apartment-detail',
@@ -13,16 +15,19 @@ export class ApartmentDetailComponent implements OnInit {
   // images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/900/500`);
   apartment: Apartment;
   id: number;
+  orders: Order [] = [];
   @Output() newItemEvent = new EventEmitter<string>();
   userLogged: any;
   constructor(private apartmentService: ApartmentService,
               private activatedRoute: ActivatedRoute,
               config: NgbCarouselConfig,
-              private router: Router) {
+              private router: Router,
+              private orderService: OrderService) {
     this.activatedRoute.paramMap.subscribe(param => {
       // @ts-ignore
       this.id = +param.get('id');
       this.showDetail(this.id);
+      this.showComment(this.id);
     });
     config.interval = 3000;
     config.wrap = false;
@@ -32,6 +37,12 @@ export class ApartmentDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  showComment(id: number) {
+    this.orderService.findAllOrderOfApartment(id).subscribe(orders => {
+      this.orders = orders;
+      console.log(this.orders);
+    });
   }
   showDetail(id: number) {
     this.apartmentService.findById(id).subscribe(apartment => {

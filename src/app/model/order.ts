@@ -11,7 +11,7 @@ export class  Order {
   comment?: any;
   checkin?: boolean;
   user?: any;
-  apartment?: any;
+  apartment?: Apartment;
   userPhoneNums?: any;
   userFullName?: any;
 }

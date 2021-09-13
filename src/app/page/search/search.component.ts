@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
   apartmentTypes: Apartmenttype [] = [];
   selectedItems: Price;
    prices: Price[] = [
-    {price1: '100', price2: '500000'},
+    {price1: '', price2: '500000'},
     {price1: '500000', price2: '1000000'},
     {price1: '1000000', price2: '2000000'},
     {price1: '2000000', price2: '999999999'}
