@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {OrderService} from '../../service/order.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {Apartment} from '../../model/apartment';
@@ -15,36 +15,68 @@ import {User} from '../../model/user';
   styleUrls: ['./apartment-order.component.css']
 })
 export class ApartmentOrderComponent implements OnInit, AfterViewInit {
-  displayOrderLabel: string[] = [ 'customer', 'phone-numbers', 'startDate', 'endDate', 'paid', '3', '4'];
+  displayOrderLabel: string[] = ['order-status', 'customer', 'phone-numbers', 'startDate', 'endDate', 'paid', '3', '4'];
   orderList: Order[] = [{}];
   dataSource = new MatTableDataSource<Apartment>(this.orderList);
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
   apartmentId;
+  selectedOrder: Order;
+  acceptAlert: any;
+  cancelAlert: any;
   constructor(private orderService: OrderService,
               private activatedRoute: ActivatedRoute,
               private userService: AuthService) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.apartmentId = +paramMap.get('apartmentId');
-      this.findOrderByApartment(this.apartmentId);
+      this.findPendingOrder(this.apartmentId);
     });
   }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  findOrderByApartment(id: number) {
-    this.orderService.findAllOrderOfApartment(id).subscribe(orderList => {
+
+  findPendingOrder(id: number) {
+    this.orderService.findPendingOrder(id).subscribe(orderList => {
       this.orderList = orderList;
       console.log(this.orderList);
       this.dataSource.data = orderList as Order[];
     });
   }
+
   ngbDateToDate(date: any) {
     return new Date(date);
   }
 
+  acceptOrder(orderId: number) {
+    this.orderService.findOrderById(orderId).subscribe(order => {
+      this.selectedOrder = order;
+      this.selectedOrder.orderStatus = 'Accepted';
+      this.orderService.edit(orderId, this.selectedOrder).subscribe(() => {
+        console.log(this.selectedOrder);
+        this.acceptAlert = true;
+        this.findPendingOrder(this.apartmentId);
+      }, error => {
+        console.log(error);
+      });
+    });
+  }
+  cancelOrder(orderId: number) {
+    this.orderService.findOrderById(orderId).subscribe(order => {
+      this.selectedOrder = order;
+      this.selectedOrder.orderStatus = 'Cancel';
+      this.orderService.edit(orderId, this.selectedOrder).subscribe(() => {
+        console.log(this.selectedOrder);
+        this.cancelAlert = true;
+        this.findPendingOrder(this.apartmentId);
+      }, error => {
+        console.log(error);
+      });
+    });
+  }
 }

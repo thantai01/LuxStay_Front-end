@@ -1,8 +1,20 @@
 <h1 class="text-xl-center">Danh sách yêu cầu</h1>
 
+<p *ngIf="acceptAlert==true">
+  <ngb-alert type="success" >Chấp nhận yêu cầu thành công! Đã gửi thông báo đến khách hàng</ngb-alert>
+</p>
+<p *ngIf="cancelAlert==true">
+  <ngb-alert type="warning" >Hủy yêu cầu thành công! Đã gửi thông báo đến khách hàng</ngb-alert>
+</p>
+
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="order-status">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let element"> {{element.orderStatus}} </td>
+    </ng-container>
 
     <!-- Position Column -->
     <ng-container matColumnDef="customer">
@@ -11,7 +23,7 @@
     </ng-container>
 
     <ng-container matColumnDef="phone-numbers">
-      <th mat-header-cell *matHeaderCellDef> Tên khách hàng </th>
+      <th mat-header-cell *matHeaderCellDef> Số điện thoại </th>
       <td mat-cell *matCellDef="let element"> {{element.userPhoneNums}} </td>
     </ng-container>
 
@@ -35,12 +47,12 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="3">
       <th mat-header-cell *matHeaderCellDef> #1 </th>
-      <td mat-cell *matCellDef="let element"><button class="btn btn-primary">Đồng ý yêu cầu</button></td>
+      <td mat-cell *matCellDef="let element"><button class="btn btn-primary" (click)="acceptOrder(element.id)">Đồng ý yêu cầu</button></td>
     </ng-container>
 
     <ng-container matColumnDef="4">
       <th mat-header-cell *matHeaderCellDef> #2 </th>
-      <td mat-cell *matCellDef="let element"> <button class="btn btn-warning">Hủy yêu cầu </button> </td>
+      <td mat-cell *matCellDef="let element"> <button class="btn btn-warning" (click)="cancelOrder(element.id)">Hủy yêu cầu </button> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayOrderLabel"></tr>
