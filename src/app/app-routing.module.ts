@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from './page/home/home.component';
 import {UserComponent} from './page/user/user.component';
 import {UserInfoComponent} from './block/user-info/user-info.component';
-import {PersonalApartmentComponent} from './block/personal-apartment/personal-apartment.component';
 import {UserApartmentComponent} from './block/user-apartment/user-apartment.component';
 import {UserOrdersComponent} from './block/user-orders/user-orders.component';
 import {UserHistoryComponent} from './block/user-history/user-history.component';
@@ -12,6 +11,8 @@ import {ApartmentCreateComponent} from './block/apartment-create/apartment-creat
 import {ViewDetailComponent} from './page/view-detail/view-detail.component';
 import {SearchComponent} from './page/search/search.component';
 import {OrderComponent} from './block/order/order.component';
+import {ApartmentDetailComponent} from './block/apartment-detail/apartment-detail.component';
+import {ApartmentOrderComponent} from './block/apartment-order/apartment-order.component';
 
 const routes: Routes = [{
   path: '',
@@ -28,6 +29,13 @@ const routes: Routes = [{
     }, {
       path: 'for-rent',
       component: UserApartmentComponent,
+      children: [{
+        path: ':id/detail',
+        component: ApartmentDetailComponent
+      }, {
+        path: ':apartmentId/orderList',
+        component: ApartmentOrderComponent
+      }]
     }, {
       path: 'orders',
       component: UserOrdersComponent,
