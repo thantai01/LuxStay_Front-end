@@ -32,6 +32,6 @@ export class ApartmentService {
     return this.httpClient.get<any>(`${APARTMENT_API}/apartments/findAllByUserId/${id}`);
   }
   find8Newest(): Observable<Apartment[]> {
-    return this.httpClient.get<any>(APARTMENT_API + '/newest-apartments');
+    return this.httpClient.get<any>(APARTMENT_API + '/apartments/newest-apartments');
   }
 }
