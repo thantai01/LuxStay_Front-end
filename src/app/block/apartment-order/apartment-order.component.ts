@@ -7,7 +7,8 @@ import {Order} from '../../model/order';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {AuthService} from '../../service/auth.service';
-import {User} from '../../model/user';
+import {NotificationService} from '../../service/notification.service';
+import {Notice} from '../../model/notice';
 
 @Component({
   selector: 'app-apartment-order',
@@ -24,9 +25,11 @@ export class ApartmentOrderComponent implements OnInit, AfterViewInit {
   selectedOrder: Order;
   acceptAlert: any;
   cancelAlert: any;
+  notification: Notice;
   constructor(private orderService: OrderService,
               private activatedRoute: ActivatedRoute,
-              private userService: AuthService) {
+              private userService: AuthService,
+              private noticeService: NotificationService) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.apartmentId = +paramMap.get('apartmentId');
       this.findPendingOrder(this.apartmentId);
@@ -64,6 +67,11 @@ export class ApartmentOrderComponent implements OnInit, AfterViewInit {
       }, error => {
         console.log(error);
       });
+      this.notification.user = this.selectedOrder.user.id;
+      this.notification.content = 'Yêu cầu thuê nhà của bạn được chấp nhận';
+      this.noticeService.newNotification(this.notification).subscribe(() => {
+        console.log('success sending notification to customer');
+      });
     });
   }
   cancelOrder(orderId: number) {
@@ -76,6 +84,11 @@ export class ApartmentOrderComponent implements OnInit, AfterViewInit {
         this.findPendingOrder(this.apartmentId);
       }, error => {
         console.log(error);
+      });
+      this.notification.user = this.selectedOrder.user.id;
+      this.notification.content = 'Bạn vừa bị từ chối yêu cầu thuê nhà từ chủ nhà';
+      this.noticeService.newNotification(this.notification).subscribe(() => {
+        console.log('success sending notification to customer');
       });
     });
   }

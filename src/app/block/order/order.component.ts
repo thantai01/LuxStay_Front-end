@@ -10,6 +10,8 @@ import {NgbCalendar, NgbDate, NgbDateParserFormatter, NgbDatepickerConfig, NgbDa
 import {NgbDateParseCustomsFormaterService} from '../../service/ngb-date-parse-customs-formater.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrderDayService} from '../../service/order-day.service';
+import {NotificationService} from '../../service/notification.service';
+import {Notice} from '../../model/notice';
 
 
 @Component({
@@ -44,7 +46,8 @@ export class OrderComponent implements OnInit {
               private ngbDateParse: NgbDateParseCustomsFormaterService,
               private config: NgbDatepickerConfig,
               private calendar: NgbCalendar,
-              private dayOrderedService: OrderDayService) {
+              private dayOrderedService: OrderDayService,
+              private notificationService: NotificationService) {
     const current = new Date();
     config.minDate = {year: current.getFullYear(), month: current.getMonth() + 1, day: current.getDate()};
     config.maxDate = {year: 2099, month: 12, day: 31};
@@ -72,7 +75,7 @@ export class OrderComponent implements OnInit {
   apartmentPrice: any;
   apartmentId: any;
   orderCreated: any;
-
+  notification: Notice;
   ngOnInit(): void {
     this.disableAllDayInOrder();
   }
@@ -116,6 +119,14 @@ export class OrderComponent implements OnInit {
     }, error1 => {
       console.log(error1);
     });
+    this.apartmentService.findById(+sessionStorage.getItem('aId')).subscribe(selected => {
+      this.notification.user = selected.user.id;
+      this.notification.content = 'Bạn vừa có 1 yêu cầu thuê nhà mới';
+      this.notificationService.newNotification(this.notification).subscribe(() => {
+        console.log('gửi thông báo tới chủ nhà thành công');
+      });
+    });
+
   }
 
   homePage() {
