@@ -1,4 +1,4 @@
-<h1 class="text-xl-center">Danh sách yêu cầu</h1>
+<h1 class="text-xl-center">Yêu cầu thuê căn hộ của tôi</h1>
 
 <p *ngIf="deletedOrder==true">
   <ngb-alert type="success" >Đã hủy yêu cầu thuê căn hộ thành công!!</ngb-alert>
@@ -12,7 +12,7 @@
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="order-status">
-      <th mat-header-cell *matHeaderCellDef> # </th>
+      <th mat-header-cell *matHeaderCellDef> Trạng thái yêu cầu </th>
       <td mat-cell *matCellDef="let element"> {{element.orderStatus}} </td>
     </ng-container>
 
