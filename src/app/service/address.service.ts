@@ -18,4 +18,10 @@ export class AddressService {
   //
   // //   }
   // }
+  getAllDistrict(): Observable<any[]> {
+    return this.httpClient.get<any[]>(environment.DISTRICT_API);
+  }
+  getAllWard(): Observable<any[]> {
+    return this.httpClient.get<any[]>(environment.WARD_API);
+  }
 }

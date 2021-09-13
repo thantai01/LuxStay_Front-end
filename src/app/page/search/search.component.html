@@ -1,4 +1,78 @@
 
+<app-top-menu></app-top-menu>
+<hr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2" style="width: 300px">
+      <div class="row"><h2>Tìm kiếm</h2></div>
+      <div class="row">
+        <form>
+          <div class="form-group">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text"><mat-icon>house</mat-icon>Tỉnh/ Thành phố</span>
+              <input type="text" class="form-control" aria-label="ApartmentName"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text"><mat-icon>house</mat-icon>Số phòng ngủ</span>
+              <input type="text" class="form-control" aria-label="ApartmentName"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text"><mat-icon>house</mat-icon>Số phòng tắm</span>
+              <input type="text" class="form-control" aria-label="ApartmentName"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text"><mat-icon>house</mat-icon>Loại căn hộ</span>
+              <select class="form-control" aria-label="ApartmentName">
+                <option *ngFor="let type of apartmentType" value="{{type.id}}">{{type.name}}</option>
+              </select>
+            </div>
+          </div>
+          <h3>Khoảng giá</h3>
+          <div class="form-group">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text"><mat-icon>house</mat-icon>Từ</span>
+              <input type="text" class="form-control" aria-label="ApartmentName"/>
+              <span class="input-group-text"><mat-icon>house</mat-icon>Đến</span>
+              <input type="text" class="form-control" aria-label="ApartmentName"/>
+            </div>
+          </div>
+          <button class="btn btn-primary">Tìm kiếm</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col-md-3" *ngFor="let apartment of apartmentHouses">
+              <div class="property">
+                <a [routerLink]="['/apartments/', apartment.id,'/detail']" class="fh5co-property" [ngStyle]="{ 'background-image': 'url(' + apartment.imageList[0]?.imageUrl + ')'}">
+                  <span class="status">Newest</span>
+                  <ul class="list-details">
+                    <li>{{apartment.bethRoom}} Phòng ngủ</li>
+                    <li>{{apartment.bathRoom}} Phòng tắm</li>
+                  </ul>
+                </a>
+                <div class="property-details">
+                  <a routerLink="/apartments/{{apartment.id}}/detail"><h3>{{apartment.name}}</h3></a>
+                  <span class="price">${{apartment.price}}/đêm.</span>
+                  <p>{{apartment.description}}</p>
+                  <span class="address text-info text-capitalize"><i class="icon-map"></i>, {{apartment.city}}, {{apartment.district}}, {{apartment.ward}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><hr>
+    </div>
+=======
+
 <input type="text" name="search" placeholder="Bạn cần tìm gì" (change)="getValue($event); search()"><button>Tìm kiếm</button>
 <h3>Tìm được {{apartments.length}} kết quả</h3>
 

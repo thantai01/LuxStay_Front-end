@@ -118,7 +118,8 @@ export class TopMenuComponent implements OnInit {
       window.location.reload();
     });
   }
-  toSearchPage() {
+
+  moveToSearchPage() {
     this.router.navigate(['search']).then(() => {
       window.location.reload();
     });
