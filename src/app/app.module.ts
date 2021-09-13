@@ -37,6 +37,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { ViewDetailComponent } from './page/view-detail/view-detail.component';
 import { SearchComponent } from './page/search/search.component';
 import {OrderComponent} from './block/order/order.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ApartmentOrderComponent } from './block/apartment-order/apartment-order.component';
 
 
 @NgModule({
@@ -59,6 +61,7 @@ import {OrderComponent} from './block/order/order.component';
         ViewDetailComponent,
         SearchComponent,
         OrderComponent,
+        ApartmentOrderComponent,
     ],
     imports: [
         BrowserModule,
@@ -80,6 +83,7 @@ import {OrderComponent} from './block/order/order.component';
         MatSidenavModule,
         MatCheckboxModule,
         MatSelectModule,
+        MatDatepickerModule,
 
     ],
   providers: [],

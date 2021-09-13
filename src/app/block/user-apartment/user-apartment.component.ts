@@ -5,6 +5,7 @@ import {ApartmentService} from '../../service/apartment.service';
 import {Apartment} from '../../model/apartment';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import {OrderService} from '../../service/order.service';
 
 @Component({
   selector: 'app-user-apartment',
@@ -12,7 +13,7 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./user-apartment.component.css']
 })
 export class UserApartmentComponent implements OnInit, AfterViewInit {
-  displayApartmentLabel: string[] = [ 'name', 'ward', 'district', 'city', 'detail', 'edit', 'status', 'setStatus'];
+  displayApartmentLabel: string[] = [ 'name', 'ward', 'district', 'city', 'detail', 'edit', 'status', 'new-status', 'setStatus', 'viewOrders'];
   personalApartments: any[] = [{}];
   dataSource = new MatTableDataSource<Apartment>(this.personalApartments);
   clickedRows = new Set<any>();
@@ -65,11 +66,12 @@ export class UserApartmentComponent implements OnInit, AfterViewInit {
   }
   selectStatus() {
     // @ts-ignore
-    let name = document.getElementById('selected')?.value;
+    const name = document.getElementById('selected')?.value;
     console.log(name);
     this.newStatus = name;
     console.log(this.newStatus);
     // this.newStatus = status;
     // console.log(this.newStatus);
   }
+
 }

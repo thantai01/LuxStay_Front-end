@@ -43,10 +43,14 @@
     <td mat-cell *matCellDef="let element" class="text-center" style="width: 180px" ><a class="btn btn-warning">Sửa thông tin</a></td>
   </ng-container>
 <!--Button3-->
-  <ng-container matColumnDef="status" style="column-span: 2">
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef style="width: 100px" class="text-center">Trạng thái hiện tại </th>
+    <td mat-cell *matCellDef="let element"><p class="text-center text-light bg-success">{{element.status}}</p></td>
+  </ng-container>
 
-    <th mat-header-cell *matHeaderCellDef class="text-center">Tình trạng</th>
-    <td mat-cell *matCellDef="let element" class="text-center m-1 p-1" style="width: 200px">
+  <ng-container matColumnDef="new-status">
+    <th mat-header-cell *matHeaderCellDef class="text-center" style="width: 100px">Trạng thái mới</th>
+    <td mat-cell *matCellDef="let element" class="text-center m-1 p-1" style="width: 100px">
         <select class="form-control m-2" id="selected" (change)="selectStatus()" >
           <option [value]="item.name" *ngFor="let item of status">{{item.name}}</option>
         </select>
@@ -57,6 +61,11 @@
   <ng-container matColumnDef="setStatus">
     <th mat-header-cell *matHeaderCellDef class="text-center">#3</th>
     <td mat-cell *matCellDef="let element" class="text-center"><a class="btn btn-success" (click)="setApartmentStatus(element.id)">Cập nhật </a></td>
+  </ng-container>
+
+  <ng-container matColumnDef="viewOrders">
+    <th mat-header-cell *matHeaderCellDef class="text-center">#4</th>
+    <td mat-cell *matCellDef="let element" class="text-center"><a class="btn btn-outline-info" routerLink="{{element.id}}/orderList">Xem yêu cầu đặt thuê </a></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayApartmentLabel"></tr>
