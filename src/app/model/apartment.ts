@@ -1,7 +1,9 @@
+import {Apartmenttype} from "./apartmenttype";
+
 export class Apartment {
   id?: number;
   name?: string;
-  apartmentType?: any;
+  apartmentType?: Apartmenttype;
   bethRoom?: string;
   bathRoom?: string;
   description?: string;

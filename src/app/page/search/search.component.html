@@ -1,1 +1,43 @@
-<p>search works!</p>
+
+<input type="text" name="search" placeholder="Bạn cần tìm gì" (change)="getValue($event); search()"><button>Tìm kiếm</button>
+<h3>Tìm được {{apartments.length}} kết quả</h3>
+
+<div>
+  <h4>Chọn theo tiêu chí</h4>
+  <form>
+    <div>
+      <select name="price"  (change)="getPrice($event); search()">
+        <option value="0">Dưới 500.000</option>
+        <option value="1">500.000 - 1.000.000</option>
+        <option value="2">1.000.000 - 2.000.000</option>
+        <option value="3">Trên 2.000.000</option>
+      </select>
+    </div>
+    <div>
+      <p>Loại phòng</p>
+      <select (change)="getypeID($event); search()">
+        <option *ngFor="let type of apartmentTypes" value="{{type.id}}">{{type.name}}</option>
+      </select>
+    </div>
+  </form>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="row">
+  <div *ngFor="let apartment of apartments" class="col-md-3">
+    <a href="" class="">
+      <div class="card" style="width: 18rem;">
+        <img src="{{apartment.imageList[0]}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">{{apartment.apartmentType.name}} - {{apartment.bethRoom}} phòng ngủ</h6>
+          <h5 class="card-title">{{apartment.name}}</h5>
+          <p class="card-text">{{apartment.description}}</p>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
