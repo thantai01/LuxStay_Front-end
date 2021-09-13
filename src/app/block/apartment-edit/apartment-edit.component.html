@@ -1,0 +1,196 @@
+<div class="container-fluid">
+  <br>
+  <span class="text-right" style="font-size: x-large;color: white">Thông tin nhà cho thuê </span>
+  <div class="row">
+<!--    <div class="col-12">-->
+      <form class="form-submit bg-transparent" [formGroup]="apartmentForm" (ngSubmit)="updateApartment(id)">
+        <!--        row 1-->
+        <div class="row">
+          <div class="input-group flex-nowrap mt-3">
+            <span class="input-group-text"><mat-icon>house</mat-icon>Tên căn hộ</span>
+            <input type="hidden" class="form-control" aria-label="ApartmentName"
+                   aria-describedby="addon-wrapping" formControlName="id"/>
+            <input type="text" class="form-control" aria-label="ApartmentName"
+                   aria-describedby="addon-wrapping" formControlName="name"/>
+          </div>
+        </div>
+
+        <!--row 2-->
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>groups</mat-icon>status</span>
+              <select class="form-control" aria-describedby="addon-wrapping" formControlName="status">
+                <option value="1">đang trống</option>
+                <option value="2">đã được thuê</option>
+                <option value="3">đang sửa chữa</option>
+                <option value="3">ngừng cung cấp dịch vụ</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="input-group flex-nowrap mt-3">
+            <span class="input-group-text">$ Giá đề xuất </span>
+            <input type="text" class="form-control" placeholder="999000" aria-describedby="addon-wrapping"
+                   formControlName="price"/>
+            <span class="input-group-text">VND/ngày</span>
+          </div>
+        </div>
+        <!--row3-->
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>list</mat-icon>Kiểu căn hộ</span>
+              <select class="form-control" aria-describedby="addon-wrapping" formControlName="apartmentType">
+                <option *ngFor="let category of apartmenttypes" [value]="category.id"
+                        [ngValue]="category.id">{{category.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>near_me</mat-icon>Tỉnh/Thành phố</span>
+              <select class="form-control" aria-describedby="addon-wrapping" formControlName="city">
+                <option>Tỉnh/TP</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--        row-4-->
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>near_me</mat-icon>Quận/Huyện</span>
+              <select class="form-control" aria-describedby="addon-wrapping" formControlName="district">
+                <option>Quận/Huyện</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>near_me</mat-icon>Xã/Phường</span>
+              <select class="form-control" aria-describedby="addon-wrapping" formControlName="ward">
+                <option>Phường A</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-group flex-nowrap mt-3">
+            <span class="input-group-text"><mat-icon>house</mat-icon>address</span>
+            <input type="text" class="form-control" aria-label="ApartmentName"
+                   aria-describedby="addon-wrapping" formControlName="apartment"/>
+          </div>
+        </div>
+        <!--        row-5-->
+        <!--        row-6-->
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>groups</mat-icon>Số phòng ngủ</span>
+              <select class="form-control" aria-describedby="addon-wrapping" formControlName="bethRoom">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text"><mat-icon>groups</mat-icon>Số phòng tắm</span>
+              <select class="form-control text-center" aria-describedby="addon-wrapping" formControlName="bathRoom">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="3">4</option>
+                <option value="3">5</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--        row-7-->
+        <div class="row mt-3">
+          <div class="input-group flex-nowrap mt-3">
+            <div class="col">
+              <span class="input-group-text"><mat-icon>edit_location</mat-icon>Thêm mô tả chi tiết </span>
+              <textarea class="form-control" id="form6Example7" rows="4" formControlName="description"></textarea>
+            </div>
+          </div>
+        </div>
+        <!--        row-6-->
+<!--        <div class="row mt-3">-->
+<!--          <div class="input-group flex-nowrap mt-3">-->
+<!--            <span class="input-group-text"><mat-icon>file_upload</mat-icon>Thêm ảnh mô tả</span>-->
+<!--            <input class="form-control" type="file" id="formFileMultiple" (change)="onFileChange($event);onUpload()"-->
+<!--                   multiple/>-->
+<!--          </div>-->
+
+<!--        </div>-->
+        <div class="row">
+          <button class="btn btn-success mt-3 float-start">Cập nhập thông tin</button>
+          <button class="btn btn-warning mt-3 float-end">Nhập lại</button>
+        </div>
+        <!--        row-7-->
+      </form>
+    </div>
+<!--    <div class="col-4" style="margin-left: -100px">-->
+<!--      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">-->
+<!--        <ol class="carousel-indicators">-->
+<!--          <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>-->
+<!--          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>-->
+<!--          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
+<!--        </ol>-->
+<!--        <div class="carousel-inner">-->
+<!--          <div class="carousel-item active" *ngFor="let img of images,index as i">-->
+<!--            <img class="d-block w-100" src="{{img.imageUrl}}" alt="First slide">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">-->
+<!--          <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--          <span class="sr-only">Previous</span>-->
+<!--        </a>-->
+<!--        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">-->
+<!--          <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--          <span class="sr-only">Next</span>-->
+<!--&lt;!&ndash;        </a>&ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
+    <!--    <div class="col-4" style="margin-left: -400px;background: transparent">-->
+    <!--&lt;!&ndash;      <div class="row">&ndash;&gt;-->
+    <!--&lt;!&ndash;        <h2 class="text-lg-start text-light"> Căn hộ bạn vừa cập nhật</h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;      </div>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;      <div class="row bg-body bg-transparent" style="background: transparent">&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;        <form [formGroup]="apartmentDetail">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;          <div class="col" *ngFor="let img of this.apartmentDetail.value.imageList" >&ndash;&gt;-->
+    <!--&lt;!&ndash;            <img [src]="img.imageUrl" class="img-thumbnail" alt="..." width="500px"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;          </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;          <div class="row">&ndash;&gt;-->
+    <!--&lt;!&ndash;            <h3>{{this.apartmentDetail.value.name}}</h3>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <p>{{this.apartmentDetail.value.apartmentType.name}}</p>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <textarea>{{this.apartmentDetail.value.description}}</textarea>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <p>{{this.apartmentDetail.value.bethRoom}} phòng ngủ</p>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <p>{{this.apartmentDetail.value.bathRoom}} phòng tắm</p>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <p>{{this.apartmentDetail.value.price | number: '1.2-2'}} VND/ngày</p>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <span>{{this.apartmentDetail.value.city}},</span>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <span>{{this.apartmentDetail.value.district}},</span>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <span>{{this.apartmentDetail.value.ward}}</span>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <p></p>&ndash;&gt;-->
+    <!--&lt;!&ndash;          </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;        </form>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;      </div>&ndash;&gt;-->
+
+    <!--    </div>-->
+    <!--  </div>-->
+  </div>
+<!--</div>-->
