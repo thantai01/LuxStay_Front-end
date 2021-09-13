@@ -4,6 +4,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Apartment} from '../../model/apartment';
 import {MatPaginator} from '@angular/material/paginator';
 import {OrderService} from '../../service/order.service';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -19,7 +20,9 @@ export class UserHistoryComponent implements OnInit {
   paginator: MatPaginator;
   checkInSuccess: any;
   selectedOrder: Order;
-  constructor(private orderService: OrderService) { }
+  closeResult = '';
+  constructor(private orderService: OrderService,
+              private modalService: NgbModal) { }
   ngOnInit(): void {
     this.findALlOrderOfUser(+sessionStorage.getItem('Id'));
   }
@@ -33,12 +36,12 @@ export class UserHistoryComponent implements OnInit {
       this.dataSource.data = orders as Order[];
     });
   }
-  checkIn(id) {
-    this.orderService.findOrderById(id).subscribe(selectedOrder => {
+  checkIn(orderId: number) {
+    this.orderService.findOrderById(orderId).subscribe(selectedOrder => {
       this.selectedOrder = selectedOrder;
       this.selectedOrder.checkin = true;
       console.log(this.selectedOrder);
-      this.orderService.edit(id, this.selectedOrder).subscribe(() => {
+      this.orderService.edit(orderId, this.selectedOrder).subscribe(() => {
         console.log('check - in thành công');
         this.checkInSuccess = true;
         this.findALlOrderOfUser(+sessionStorage.getItem('Id'));
@@ -48,5 +51,22 @@ export class UserHistoryComponent implements OnInit {
 
   rating(id) {
 
+  }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
