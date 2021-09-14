@@ -22,10 +22,10 @@ export class SearchComponent implements OnInit {
   typeID: string;
   value: string;
   prices: Price[] = [
-    {price1: '', price2: '500000'},
-    {price1: '500000', price2: '1000000'},
-    {price1: '1000000', price2: '2000000'},
-    {price1: '2000000', price2: '999999999'}
+    {price1: '', price2: '20'},
+    {price1: '20', price2: '50'},
+    {price1: '50', price2: '100'},
+    {price1: '100', price2: '999999999'}
   ];
   selectedItems: Price;
 
