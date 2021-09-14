@@ -9,7 +9,7 @@
       <div class="row">
         <form >
           <div class="form-group">
-            <div class="input-group flex-nowrap">
+            <div value="" class="input-group flex-nowrap" (change)="getValue($event)">
               <span class="input-group-text"><mat-icon>house</mat-icon>Tỉnh/ Thành phố</span>
               <input type="text" class="form-control" aria-label="ApartmentName"/>
             </div>
@@ -29,14 +29,14 @@
           <div class="form-group">
             <div class="input-group flex-nowrap">
               <span class="input-group-text"><mat-icon>house</mat-icon>Loại căn hộ</span>
-              <select class="form-control" aria-label="ApartmentName">
-                <option *ngFor="let type of apartmentType" value="{{type.id}}">{{type.name}}</option>
+              <select value="" class="form-control" aria-label="ApartmentName" (change)="getypeID($event)">
+                <option  *ngFor="let type of apartmentType" value="{{type.id}}">{{type.name}}</option>
               </select>
             </div>
           </div>
           <h3>Khoảng giá</h3>
           <div class="mb-3 form-control">
-            <select name="price" (change)="getPrice($event)">
+            <select value="" name="price" (change)="getPrice($event)">
               <option value="0">Dưới 20$</option>
               <option value="1">Từ 20-50$</option>
               <option value="2">Từ 50-100$</option>
