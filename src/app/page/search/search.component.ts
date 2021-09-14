@@ -37,7 +37,6 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.findAllApartment();
     this.findAllApartmentType();
-    this.apartmentService.searchAll(this.value, this.typeID, this.price11, this.price22);
   }
 
   findAllApartment() {
@@ -73,6 +72,8 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.apartmentService.searchAll(this.value, this.typeID, this.price11, this.price22);
+    this.apartmentService.searchAll(this.value, this.typeID, this.price11, this.price22).subscribe(aprtments => {
+      this.apartments = aprtments;
+    });
   }
 }
