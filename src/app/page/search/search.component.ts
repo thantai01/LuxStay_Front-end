@@ -8,6 +8,7 @@ import {Price} from "../../model/price";
 import {ApartmenttypeService} from "../../service/apartmenttype.service";
 import {Apartmenttype} from "../../model/apartmenttype";
 import {ApartmentService} from "../../service/apartment.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -55,7 +56,8 @@ export class SearchComponent implements OnInit {
   ];
   constructor(private httpClient: HttpClient,
               private apartmentTyeService: ApartmenttypeService,
-              private apartmentService: ApartmentService) {
+              private apartmentService: ApartmentService,
+              private router: Router) {
     // @ts-ignore
     this.apartmentTypes = apartmentTyeService.getAll();
   }
