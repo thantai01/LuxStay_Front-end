@@ -4,7 +4,6 @@ import {Apartment} from '../../model/apartment';
 import {ApartmenttypeService} from '../../service/apartmenttype.service';
 import {ApartmentService} from '../../service/apartment.service';
 import {Price} from '../../model/price';
-import {Router} from "@angular/router";
 
 
 @Component({
@@ -23,10 +22,10 @@ export class SearchComponent implements OnInit {
   typeID: string;
   value: string;
   prices: Price[] = [
-    {price1: '', price2: '500000'},
-    {price1: '500000', price2: '1000000'},
-    {price1: '1000000', price2: '2000000'},
-    {price1: '2000000', price2: '999999999'}
+    {price1: '', price2: '20'},
+    {price1: '20', price2: '50'},
+    {price1: '50', price2: '100'},
+    {price1: '100', price2: '999999999'}
   ];
   selectedItems: Price;
 
@@ -51,31 +50,6 @@ export class SearchComponent implements OnInit {
     this.apartmenttypeService.getAll().subscribe(type => {
       this.apartmentType = type;
     });
-
-  apartments: Apartment [] = [];
-  price11: string;
-  price22: string;
-  typeID: string;
-  value: string;
-  // @ts-ignore
-  apartments: Apartment [] = [];
-  apartmentTypes: Apartmenttype [] = [];
-  selectedItems: Price;
-   prices: Price[] = [
-    {price1: '', price2: '500000'},
-    {price1: '500000', price2: '1000000'},
-    {price1: '1000000', price2: '2000000'},
-    {price1: '2000000', price2: '999999999'}
-  ];
-  constructor(private httpClient: HttpClient,
-              private apartmentTyeService: ApartmenttypeService,
-              private apartmentService: ApartmentService,
-              private router: Router) {
-    // @ts-ignore
-    this.apartmentTypes = apartmentTyeService.getAll();
-  }
-  ngOnInit(): void {
-    this.apartmentService.searchAll(this.value, this.typeID, this.price11, this.price22);
   }
 
   getPrice(event: Event) {
