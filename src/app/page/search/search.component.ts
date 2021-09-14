@@ -5,6 +5,7 @@ import {Price} from "../../model/price";
 import {ApartmenttypeService} from "../../service/apartmenttype.service";
 import {Apartmenttype} from "../../model/apartmenttype";
 import {ApartmentService} from "../../service/apartment.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -29,7 +30,8 @@ export class SearchComponent implements OnInit {
   ];
   constructor(private httpClient: HttpClient,
               private apartmentTyeService: ApartmenttypeService,
-              private apartmentService: ApartmentService) {
+              private apartmentService: ApartmentService,
+              private router: Router) {
     // @ts-ignore
     this.apartmentTypes = apartmentTyeService.getAll();
   }
@@ -56,5 +58,4 @@ export class SearchComponent implements OnInit {
  search(){
     this.apartmentService.searchAll(this.value, this.typeID, this.price11, this.price22);
   }
-
 }
