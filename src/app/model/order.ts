@@ -3,6 +3,7 @@ import {Apartment} from './apartment';
 
 
 export class  Order {
+  id?: any;
   startDate?: any;
   endDate?: any;
   orderStatus?: any;
