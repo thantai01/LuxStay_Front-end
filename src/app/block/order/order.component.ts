@@ -108,7 +108,7 @@ export class OrderComponent implements OnInit {
     this.order = new Order();
     this.order = this.orderForm.value;
     this.order.user = {id: sessionStorage.getItem('Id')};
-    this.order.apartment = {id: sessionStorage.getItem('aId')};
+    this.order.apartment = {id: +sessionStorage.getItem('aId')};
     this.order.totalPaid = this.cal();
     this.order.startDate = this.startDateJs;
     this.order.endDate = this.endDateJs;
