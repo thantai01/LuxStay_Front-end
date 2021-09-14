@@ -64,14 +64,15 @@ export class ApartmentOrderComponent implements OnInit, AfterViewInit {
         console.log(this.selectedOrder);
         this.acceptAlert = true;
         this.findPendingOrder(this.apartmentId);
+      });
       }, error => {
         console.log(error);
       });
-      this.notification.user = this.selectedOrder.user.id;
-      this.notification.content = 'Yêu cầu thuê nhà của bạn được chấp nhận';
-      this.noticeService.newNotification(this.notification).subscribe(() => {
-        console.log('success sending notification to customer');
-      });
+
+    this.notification.user = this.selectedOrder.user.id;
+    this.notification.content = 'Yêu cầu thuê nhà của bạn được chấp nhận';
+    this.noticeService.newNotification(this.notification).subscribe(() => {
+      console.log('success sending notification to customer');
     });
   }
   cancelOrder(orderId: number) {
@@ -85,11 +86,11 @@ export class ApartmentOrderComponent implements OnInit, AfterViewInit {
       }, error => {
         console.log(error);
       });
-      this.notification.user = this.selectedOrder.user.id;
-      this.notification.content = 'Bạn vừa bị từ chối yêu cầu thuê nhà từ chủ nhà';
-      this.noticeService.newNotification(this.notification).subscribe(() => {
-        console.log('success sending notification to customer');
-      });
+    });
+    this.notification.user = this.selectedOrder.user.id;
+    this.notification.content = 'Bạn vừa bị từ chối yêu cầu thuê nhà từ chủ nhà';
+    this.noticeService.newNotification(this.notification).subscribe(() => {
+      console.log('success sending notification to customer');
     });
   }
 }
