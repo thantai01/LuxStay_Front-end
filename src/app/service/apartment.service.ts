@@ -41,6 +41,6 @@ export class ApartmentService {
       .set('price1', price1)
       .set('price2', price2);
     // @ts-ignore
-    return this.httpClient.get<Apartment []> (APARTMENT_API + '/search-all' , {params});
+    return this.httpClient.get<Apartment []> (APARTMENT_API + '/apartments/search-all' , {params});
   }
 }
