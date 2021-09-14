@@ -21,7 +21,10 @@ export class UserHistoryComponent implements OnInit {
   checkInSuccess: any;
   selectedOrder: Order;
   closeResult = '';
-  orderId;
+  rating: any;
+  comment: string;
+  orderId: number;
+  order: Order;
   constructor(private orderService: OrderService,
               private modalService: NgbModal) { }
   ngOnInit(): void {
@@ -50,12 +53,19 @@ export class UserHistoryComponent implements OnInit {
     });
   }
 
-  rating(id) {
-
+  getRating(event: Event) {
+  // @ts-ignore
+    this.rating = event.target.value;
+    console.log(this.rating);
   }
-  open(content) {
+  getComment(event: Event) {
+    // @ts-ignore
+    this.comment = event.target.value;
+  }
+  open(content, orderID) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      this.orderId = orderID;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
@@ -69,6 +79,14 @@ export class UserHistoryComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+  onSubmit(){
+    this.orderService.findOrderById(this.orderId).subscribe(order => {
+      this.order = order;
+    });
+    this.order.comment = this.comment;
+    this.order.rating = this.rating;
+    this.orderService.edit(this.orderId, this.order);
   }
 
 }
