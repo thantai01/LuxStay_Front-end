@@ -32,7 +32,7 @@ export class ApartmentService {
     return this.httpClient.get<any>(`${APARTMENT_API}/apartments/findAllByUserId/${id}`);
   }
   find8Newest(): Observable<Apartment[]> {
-    return this.httpClient.get<any>(APARTMENT_API + '/newest-apartments');
+    return this.httpClient.get<any>(APARTMENT_API + '/apartments/newest-apartments');
   }
   searchAll(value?: string, typeID?: string, price1?: string, price2?: string): Observable<Apartment[]> {
     let params = new HttpParams()

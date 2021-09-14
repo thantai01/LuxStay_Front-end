@@ -41,11 +41,11 @@ export class UserHistoryComponent implements OnInit {
       this.selectedOrder = selectedOrder;
       this.selectedOrder.checkin = true;
       console.log(this.selectedOrder);
-      this.orderService.edit(orderId, this.selectedOrder).subscribe(() => {
-        console.log('check - in thành công');
-        this.checkInSuccess = true;
-        this.findALlOrderOfUser(+sessionStorage.getItem('Id'));
-      });
+    });
+    this.orderService.edit(orderId, this.selectedOrder).subscribe(() => {
+      console.log('check - in thành công');
+      this.checkInSuccess = true;
+      this.findALlOrderOfUser(+sessionStorage.getItem('Id'));
     });
   }
 
