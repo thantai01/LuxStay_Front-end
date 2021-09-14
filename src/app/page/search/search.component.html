@@ -7,7 +7,7 @@
     <div class="col-2" style="width: 300px">
       <div class="row"><h2>Tìm kiếm</h2></div>
       <div class="row">
-        <form>
+        <form >
           <div class="form-group">
             <div class="input-group flex-nowrap">
               <span class="input-group-text"><mat-icon>house</mat-icon>Tỉnh/ Thành phố</span>
@@ -36,7 +36,7 @@
           </div>
           <h3>Khoảng giá</h3>
           <div class="mb-3 form-control">
-            <select name="price" (change)="getPrice($event); search()">
+            <select name="price" (change)="getPrice($event)">
               <option value="0">Dưới 20$</option>
               <option value="1">Từ 20-50$</option>
               <option value="2">Từ 50-100$</option>
@@ -51,7 +51,7 @@
 <!--              <input type="text" class="form-control" aria-label="ApartmentName"/>-->
 <!--            </div>-->
 <!--          </div>-->
-          <button class="btn btn-primary">Tìm kiếm</button>
+          <button class="btn btn-primary" (click)="search()">Tìm kiếm</button>
         </form>
       </div>
     </div>
