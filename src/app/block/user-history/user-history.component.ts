@@ -21,6 +21,7 @@ export class UserHistoryComponent implements OnInit {
   checkInSuccess: any;
   selectedOrder: Order;
   closeResult = '';
+  orderId;
   constructor(private orderService: OrderService,
               private modalService: NgbModal) { }
   ngOnInit(): void {
@@ -69,4 +70,5 @@ export class UserHistoryComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
 }

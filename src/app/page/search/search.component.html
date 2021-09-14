@@ -2,6 +2,8 @@
 <hr>
 <div class="container-fluid">
   <div class="row">
+
+<!--    menu tim kiem-->
     <div class="col-2" style="width: 300px">
       <div class="row"><h2>Tìm kiếm</h2></div>
       <div class="row">
@@ -33,18 +35,28 @@
             </div>
           </div>
           <h3>Khoảng giá</h3>
-          <div class="form-group">
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text"><mat-icon>house</mat-icon>Từ</span>
-              <input type="text" class="form-control" aria-label="ApartmentName"/>
-              <span class="input-group-text"><mat-icon>house</mat-icon>Đến</span>
-              <input type="text" class="form-control" aria-label="ApartmentName"/>
-            </div>
+          <div class="mb-3 form-control">
+            <select name="price" (change)="getPrice($event); search()">
+              <option value="0">Dưới 500.000</option>
+              <option value="1">500.000 - 1.000.000</option>
+              <option value="2">1.000.000 - 2.000.000</option>
+              <option value="3">Trên 2.000.000</option>
+            </select>
           </div>
+<!--          <div class="form-group">-->
+<!--            <div class="input-group flex-nowrap">-->
+<!--              <span class="input-group-text"><mat-icon>house</mat-icon>Từ</span>-->
+<!--              <input type="text" class="form-control" aria-label="ApartmentName"/>-->
+<!--              <span class="input-group-text"><mat-icon>house</mat-icon>Đến</span>-->
+<!--              <input type="text" class="form-control" aria-label="ApartmentName"/>-->
+<!--            </div>-->
+<!--          </div>-->
           <button class="btn btn-primary">Tìm kiếm</button>
         </form>
       </div>
     </div>
+
+<!--    ket qua tim kiem-->
     <div class="col-10">
       <div class="row">
         <div class="col">
@@ -73,49 +85,35 @@
       </div>
       <hr>
     </div>
-    <input type="text" name="search" placeholder="Bạn cần tìm gì" (change)="getValue($event); search()">
-    <button>Tìm kiếm</button>
+
+
+
+
+
+
+
+
+
+<!--    <input type="text" name="search" placeholder="Bạn cần tìm gì" (change)="getValue($event); search()">-->
+<!--    <button>Tìm kiếm</button>-->
 <!--    <h3>Tìm được {{apartments.length}} kết quả</h3>-->
 
-    <div>
-      <h4>Chọn theo tiêu chí</h4>
-      <form>
-        <div>
-          <select name="price" (change)="getPrice($event); search()">
-            <option value="0">Dưới 500.000</option>
-            <option value="1">500.000 - 1.000.000</option>
-            <option value="2">1.000.000 - 2.000.000</option>
-            <option value="3">Trên 2.000.000</option>
-          </select>
-        </div>
-        <div>
-          <p>Loại phòng</p>
-          <select (change)="getypeID($event); search()">
-            <option *ngFor="let type of apartmentType" value="{{type.id}}">{{type.name}}</option>
-          </select>
-        </div>
-      </form>
-    </div>
 
-    <br>
-    <br>
-    <br>
+<!--    <div class="row">-->
+<!--      <div *ngFor="let apartment of apartments" class="col-md-3">-->
+<!--        <a href="" class="">-->
+<!--          <div class="card" style="width: 18rem;">-->
+<!--            <img src="{{apartment.imageList[0]}}" class="card-img-top" alt="...">-->
+<!--            <div class="card-body">-->
+<!--              <h6 class="card-subtitle mb-2 text-muted">{{apartment.apartmentType.name}} - {{apartment.bethRoom}} phòng-->
+<!--                ngủ</h6>-->
+<!--              <h5 class="card-title">{{apartment.name}}</h5>-->
+<!--              <p class="card-text">{{apartment.description}}</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </a>-->
 
-    <div class="row">
-      <div *ngFor="let apartment of apartments" class="col-md-3">
-        <a href="" class="">
-          <div class="card" style="width: 18rem;">
-            <img src="{{apartment.imageList[0]}}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h6 class="card-subtitle mb-2 text-muted">{{apartment.apartmentType.name}} - {{apartment.bethRoom}} phòng
-                ngủ</h6>
-              <h5 class="card-title">{{apartment.name}}</h5>
-              <p class="card-text">{{apartment.description}}</p>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </div>
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>
