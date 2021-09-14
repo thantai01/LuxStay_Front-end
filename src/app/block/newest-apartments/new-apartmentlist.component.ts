@@ -15,11 +15,11 @@ export class NewApartmentlistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAll();
+    this.get8newEst();
   }
 
-  getAll() {
-    this.apartmentService.findAll().subscribe(apartments => {
+  get8newEst() {
+    this.apartmentService.find8Newest().subscribe(apartments => {
       this.apartmentHouses = apartments;
       console.log(apartments);
     });

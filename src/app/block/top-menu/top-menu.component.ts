@@ -68,14 +68,13 @@ export class TopMenuComponent implements OnInit {
       this.form.password,
     );
     console.log(this.signUpForm);
+    this.notice = true;
     this.authService.signUp(this.signUpForm).subscribe(data => {
       if (JSON.stringify(data) === JSON.stringify(this.error1)){
         this.status = 'Tài khoản đã tồn tại! Vui lòng nhập tên khác';
       }
       if (JSON.stringify(data) === JSON.stringify(this.success)){
         this.isRegisterSuccess = true;
-        this.notice = 'Tạo tài khoản mới thành công!!! -->';
-        console.log(this.notice);
       }
     });
   }
